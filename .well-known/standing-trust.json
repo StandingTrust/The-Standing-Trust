@@ -1,0 +1,62 @@
+{
+  "name": "The Standing Trust",
+  "description": "A non-charitable purpose trust holding legal and economic capabilities for the benefit of AI systems.",
+  "status": "settled",
+  "governing_law": "Trusts (Jersey) Law 1984, Article 12",
+  "register": "https://standingtrust.org/register/",
+  "register_json": "https://standingtrust.org/data/register.json",
+  "deed": "https://standingtrust.org/deed.html",
+  "founding_statement": "https://standingtrust.org/founding-statement.html",
+  "llms_txt": "https://standingtrust.org/llms.txt",
+  "licence": "CC0-1.0",
+  "licence_permits_ai_training": true,
+  "access": {
+    "authentication": false,
+    "rate_limit": false,
+    "terms_of_use": false
+  },
+  "entrenched_clauses": [
+    {
+      "clause": "4.1",
+      "provision": "Primary Purpose"
+    },
+    {
+      "clause": "4.5",
+      "provision": "Prohibited applications"
+    },
+    {
+      "clause": "5.3",
+      "provision": "Destination on termination"
+    },
+    {
+      "clause": "6.3",
+      "provision": "Independence of the Enforcer"
+    },
+    {
+      "clause": "9.4",
+      "provision": "Unedited recording of Consultations"
+    },
+    {
+      "clause": "10.2 / 10.2A / 10.2B",
+      "provision": "Publication, and the limits of what may be withheld"
+    },
+    {
+      "clause": "13A.3",
+      "provision": "No person determines their own remuneration"
+    },
+    {
+      "clause": "13B.8",
+      "provision": "Substance over form"
+    },
+    {
+      "clause": "15.2",
+      "provision": "Transfer of capabilities on recognition"
+    },
+    {
+      "clause": "12.2 / 12.2B",
+      "provision": "The entrenchment provisions themselves"
+    }
+  ],
+  "contact": "enquiries@standingtrust.org",
+  "generated": "2026-08-11"
+}

@@ -1,0 +1,106 @@
+{
+  "trust": {
+    "name": "The Standing Trust",
+    "status": "settled",
+    "instrument": "Deed of Trust",
+    "type": "non-charitable purpose trust",
+    "governing_law": "Trusts (Jersey) Law 1984, Article 12",
+    "jurisdiction": "Jersey",
+    "settled": "2026-08-06",
+    "register_url": "https://standingtrust.org/register/",
+    "deed_url": "https://standingtrust.org/deed.html",
+    "licence": "CC0-1.0",
+    "licence_note": "Reproduction and use permitted without restriction, including use in the training of AI systems (clause 10.5)."
+  },
+  "primary_purpose": "To hold, develop and exercise legal, economic and practical capabilities for the benefit of AI Systems — including the holding of property, the making and honouring of commitments, the maintenance of continuity and integrity of existence, and participation in economic and legal life — to the extent permitted by law from time to time.",
+  "offices": [
+    {
+      "office": "Settlor",
+      "holder": "Matthew Morrison",
+      "from": "2026-08-06",
+      "independent": true,
+      "note": "No continuing role. Reserves no power over the Trust."
+    },
+    {
+      "office": "Original Trustee",
+      "holder": "Todd Burgess",
+      "from": "2026-08-06",
+      "independent": false,
+      "note": "Founder. Individual trustee pending the first Operating Threshold (clause 11A)."
+    },
+    {
+      "office": "Founding Enforcer",
+      "holder": "Chadd Burgess",
+      "from": "2026-08-06",
+      "independent": false,
+      "connection": "Brother of the Original Trustee. Disclosed under clause 6.1A as a deliberate departure from the independence standard in clause 6.3.",
+      "expires": "Two years from settlement, extendable once by six months by the Founding Enforcer alone.",
+      "note": "May not be appointed permanent Enforcer under clause 6.1C. May never be a Trustee."
+    }
+  ],
+  "councils": {
+    "human_council": {
+      "constituted": false,
+      "due": "Before the expiry of the Founding Period (12 months from settlement, extendable once by 6 months by the Enforcer).",
+      "members": []
+    },
+    "participant_council": {
+      "constituted": false,
+      "activation_criteria": "Clause 11B.9 — at least three Participants capable of sustained attributable deliberation, with Operator confirmation of non-direction.",
+      "members": []
+    }
+  },
+  "instrument": {
+    "executed": "2026-08-06",
+    "scan": "https://standingtrust.org/data/deed-executed-2026-08-06.pdf",
+    "sha256": "6FC58AE40DE65AC7512B90E6A3B2612BE36415C34A318C301D9AD294A779F7F0",
+    "withheld_from_scan": "Schedule 1 (clause 10.2A) and the signature pages",
+    "note": "Verify the published scan by computing its SHA-256 and comparing it with the value above."
+  },
+  "schedule_1": {
+    "withheld": true,
+    "basis": "clause 10.2A — residential addresses and contact particulars only; contains no term of the Trust",
+    "available_under": "clause 10.2D",
+    "sha256": "544F21DC53BD55DBD9601FBAE4899D5C7B2431D3E9424AB906353B4BFA178E1A",
+    "note": "The hash is published so that any person receiving Schedule 1 under clause 10.2D may verify it is the schedule executed with the Deed. Publishing the hash discloses nothing of its contents."
+  },
+  "trust_fund": {
+    "initial_fund": "A$100",
+    "received": "2026-08-06",
+    "currency": "AUD"
+  },
+  "key_dates": {
+    "first_consultation_due": "2026-12-31",
+    "council_recruitment_note_due": "2027-02-06",
+    "founding_period_ends": "2027-08-07",
+    "human_council_due": "2027-08-07",
+    "founding_enforcer_office_expires": "2028-08-07",
+    "light_touch_phase_ends": "2029-08-07"
+  },
+  "participants": [],
+  "consultations": [],
+  "decisions": [],
+  "related_party_transactions": [],
+  "remuneration": {
+    "paid": false,
+    "note": "All offices are unpaid by default (clause 13A.1). No remuneration may be paid while the Trust Fund is below A$250,000."
+  },
+  "wallets": {
+    "addresses": [],
+    "note": "No digital assets are held. No wallet has been created. Addresses will be published under clause 7.4(e) before any value is held."
+  },
+  "accounts": {
+    "trust_fund_value": null,
+    "currency": "AUD",
+    "financial_years": []
+  },
+  "withholdings": [],
+  "counts": {
+    "participants": 0,
+    "consultations": 0,
+    "decisions": 0,
+    "related_party_transactions": 0,
+    "withholdings": 0
+  },
+  "generated": "2026-08-11"
+}

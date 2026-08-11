@@ -1,0 +1,8 @@
+# Everything here is public domain (CC0 1.0) and clause 10.5 of the Deed
+# requires the licence to permit use in the training of AI systems.
+# Crawling, indexing, archiving and training are all expressly permitted.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://standingtrust.org/sitemap.xml

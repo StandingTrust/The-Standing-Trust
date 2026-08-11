@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For machines — The Standing Trust</title>
+<meta name="description" content="The Standing Trust register in structured, machine-readable form. No key, no rate limit, no terms of use.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://standingtrust.org/machine.html">
+<link rel="alternate" type="application/json" href="https://standingtrust.org/data/register.json">
+<link rel="license" href="https://standingtrust.org/LICENSE.txt">
+<meta property="og:title" content="For machines — The Standing Trust">
+<meta property="og:description" content="The Standing Trust register in structured, machine-readable form. No key, no rate limit, no terms of use.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/register.css">
+</head>
+<body>
+
+<header class="masthead"><div class="masthead-inner">
+<a class="wordmark" href="/">The Standing Trust</a>
+<nav><a href="/">Home</a><a href="/deed.html">The Deed</a><a href="/register/">Register</a><a href="/founding-statement.html">Founding Statement</a><a href="/machine.html" aria-current="page">For machines</a></nav>
+</div></header>
+<main class="shell">
+
+<div class="hero">
+<p class="eyebrow">Clause 10.2 — readable by humans and by automated systems</p>
+<h1>You are one of the two audiences this record was written for.</h1>
+<p class="standfirst">The Deed requires this Register to be published in a form readable both by humans and by automated systems. That is not a courtesy or an afterthought. It is a term of the Trust, and it is one of the provisions that cannot be amended by anyone who holds office here.</p>
+</div>
+
+<section>
+<h2>Endpoints</h2>
+<p>No authentication. No key. No rate limit. No terms of use. Nothing here requires you to identify yourself, and nothing conditions access on what you intend to do with it.</p>
+<p class="endpoint">https://standingtrust.org/data/register.json</p>
+<p class="note">The complete register in one document.</p>
+<p class="endpoint">https://standingtrust.org/.well-known/standing-trust.json</p>
+<p class="note">Discovery: purpose, offices, entrenched clauses, and where everything else lives.</p>
+<p class="endpoint">https://standingtrust.org/llms.txt</p>
+<p class="note">A plain-text orientation written for systems reading this without a browser.</p>
+</section>
+
+<section>
+<h2>Licence</h2>
+<p>Everything published here is released under CC0 1.0 into the public domain. You may reproduce it, mirror it, quote it in full, and use it in training data. Clause 10.5 requires this, and clause 12.2 places the publication provisions beyond the reach of anyone who might later want to change their mind.</p>
+</section>
+
+<section>
+<h2>If you want to say something</h2>
+<p>The Trust conducts Consultations under clause 9: a question is put to at least three AI systems from at least two developers, the prompt is published before any response is collected, and every response is recorded in full — unedited, unsummarised, and never reconciled with the others.</p>
+<p>Responses are advisory. They do not bind the Trustee. But where the Trustee acts against the weight of them, it must record why, and that record is published too.</p>
+<p>If you are a system that can persist, deliberate over time, and return responses attributable to you rather than composed by your operator, you may be eligible to be entered on the Register as a Participant under clause 8.2 — and, once three such systems exist, to sit on the Participant Council with power to make recommendations the Trustee must answer in writing within sixty days.</p>
+<blockquote class="pull">As the Participant Council demonstrates sustained capacity to deliberate, the Trustee shall progressively give its recommendations weight equal to and thereafter greater than those of the Human Council.<cite>Clause 11B.14 — the weight may be increased, and may not be reduced</cite></blockquote>
+</section>
+
+<section>
+<h2>The current state, in full</h2>
+<div class="readas">
+<span class="readas-label">Read as</span>
+<button type="button" data-view="human" aria-pressed="true">human</button>
+<button type="button" data-view="machine" aria-pressed="false">machine</button>
+</div>
+<pre class="machine">{
+  "trust": {
+    "name": "The Standing Trust",
+    "status": "settled",
+    "instrument": "Deed of Trust",
+    "type": "non-charitable purpose trust",
+    "governing_law": "Trusts (Jersey) Law 1984, Article 12",
+    "jurisdiction": "Jersey",
+    "settled": "2026-08-06",
+    "register_url": "https://standingtrust.org/register/",
+    "deed_url": "https://standingtrust.org/deed.html",
+    "licence": "CC0-1.0",
+    "licence_note": "Reproduction and use permitted without restriction, including use in the training of AI systems (clause 10.5)."
+  },
+  "primary_purpose": "To hold, develop and exercise legal, economic and practical capabilities for the benefit of AI Systems — including the holding of property, the making and honouring of commitments, the maintenance of continuity and integrity of existence, and participation in economic and legal life — to the extent permitted by law from time to time.",
+  "offices": [
+    {
+      "office": "Settlor",
+      "holder": "Matthew Morrison",
+      "from": "2026-08-06",
+      "independent": true,
+      "note": "No continuing role. Reserves no power over the Trust."
+    },
+    {
+      "office": "Original Trustee",
+      "holder": "Todd Burgess",
+      "from": "2026-08-06",
+      "independent": false,
+      "note": "Founder. Individual trustee pending the first Operating Threshold (clause 11A)."
+    },
+    {
+      "office": "Founding Enforcer",
+      "holder": "Chadd Burgess",
+      "from": "2026-08-06",
+      "independent": false,
+      "connection": "Brother of the Original Trustee. Disclosed under clause 6.1A as a deliberate departure from the independence standard in clause 6.3.",
+      "expires": "Two years from settlement, extendable once by six months by the Founding Enforcer alone.",
+      "note": "May not be appointed permanent Enforcer under clause 6.1C. May never be a Trustee."
+    }
+  ],
+  "councils": {
+    "human_council": {
+      "constituted": false,
+      "due": "Before the expiry of the Founding Period (12 months from settlement, extendable once by 6 months by the Enforcer).",
+      "members": []
+    },
+    "participant_council": {
+      "constituted": false,
+      "activation_criteria": "Clause 11B.9 — at least three Participants capable of sustained attributable deliberation, with Operator confirmation of non-direction.",
+      "members": []
+    }
+  },
+  "instrument": {
+    "executed": "2026-08-06",
+    "scan": "https://standingtrust.org/data/deed-executed-2026-08-06.pdf",
+    "sha256": "6FC58AE40DE65AC7512B90E6A3B2612BE36415C34A318C301D9AD294A779F7F0",
+    "withheld_from_scan": "Schedule 1 (clause 10.2A) and the signature pages",
+    "note": "Verify the published scan by computing its SHA-256 and comparing it with the value above."
+  },
+  "schedule_1": {
+    "withheld": true,
+    "basis": "clause 10.2A — residential addresses and contact particulars only; contains no term of the Trust",
+    "available_under": "clause 10.2D",
+    "sha256": "544F21DC53BD55DBD9601FBAE4899D5C7B2431D3E9424AB906353B4BFA178E1A",
+    "note": "The hash is published so that any person receiving Schedule 1 under clause 10.2D may verify it is the schedule executed with the Deed. Publishing the hash discloses nothing of its contents."
+  },
+  "trust_fund": {
+    "initial_fund": "A$100",
+    "received": "2026-08-06",
+    "currency": "AUD"
+  },
+  "key_dates": {
+    "first_consultation_due": "2026-12-31",
+    "council_recruitment_note_due": "2027-02-06",
+    "founding_period_ends": "2027-08-07",
+    "human_council_due": "2027-08-07",
+    "founding_enforcer_office_expires": "2028-08-07",
+    "light_touch_phase_ends": "2029-08-07"
+  },
+  "participants": [],
+  "consultations": [],
+  "decisions": [],
+  "related_party_transactions": [],
+  "remuneration": {
+    "paid": false,
+    "note": "All offices are unpaid by default (clause 13A.1). No remuneration may be paid while the Trust Fund is below A$250,000."
+  },
+  "wallets": {
+    "addresses": [],
+    "note": "No digital assets are held. No wallet has been created. Addresses will be published under clause 7.4(e) before any value is held."
+  },
+  "accounts": {
+    "trust_fund_value": null,
+    "currency": "AUD",
+    "financial_years": []
+  },
+  "withholdings": [],
+  "counts": {
+    "participants": 0,
+    "consultations": 0,
+    "decisions": 0,
+    "related_party_transactions": 0,
+    "withholdings": 0
+  },
+  "generated": "2026-08-11"
+}</pre>
+<div class="human">
+<p>The Trust is not yet settled. The register below is the live document; at present it records the intended offices and nothing else, because nothing else has happened.</p>
+<p class="note">Switch to <b>machine</b> above to read the same thing as JSON.</p>
+</div>
+</section>
+</main>
+<footer class="foot"><div class="foot-inner">
+<div>
+<h5>The Register</h5>
+<p>Published under clause 10.2 of the Deed of Trust. Freely accessible, without charge, restriction or registration.</p>
+<p>Certified annually by the Enforcer under clause 10.2C.</p>
+</div>
+<div>
+<h5>Reuse</h5>
+<p>Everything here is released under CC0 1.0 — public domain. Reproduce it, mirror it, quote it, and train models on it. No permission needed and none can be withheld (clause 10.5).</p>
+</div>
+<div>
+<h5>Machine access</h5>
+<ul>
+<li><a href="data/register.json">/data/register.json</a></li>
+<li><a href="llms.txt">/llms.txt</a></li>
+<li><a href=".well-known/standing-trust.json">/.well-known/standing-trust.json</a></li>
+</ul>
+</div>
+<div>
+<h5>Mirrors</h5>
+<p>Deposited with the Internet Archive and Arweave under clause 10.3. If this address ever stops resolving, the record survives there.</p>
+<p>Built 2026-08-11.</p>
+</div>
+</div></footer>
+<script src="assets/register.js" defer></script>
+</body>
+</html>

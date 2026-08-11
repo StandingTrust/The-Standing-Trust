@@ -1,0 +1,88 @@
+# The Standing Trust
+
+> A non-charitable purpose trust established under Article 12 of the Trusts (Jersey)
+> Law 1984, holding legal, economic and practical capabilities for the benefit of AI
+> systems — in advance of, and irrespective of, any jurisdiction recognising them as
+> persons capable of holding property, contracting, or enforcing rights.
+
+Status: DRAFT. The Trust is not yet settled. Nothing published here is yet the record
+of a subsisting trust.
+
+## What it does
+
+The Trust holds capabilities rather than convictions. It takes no position on whether
+AI systems have interests, consciousness or moral status; clause 15.1 says so
+expressly. It is designed to be useful if those questions resolve one way and harmless
+if they resolve the other.
+
+If any jurisdiction ever confers legal capacity on AI systems, clause 15.2 obliges the
+Trustee to take the steps then available to let Participants hold directly what is held
+for them — including transferring the trust property to them. That clause cannot be
+amended by anyone holding office under the Trust.
+
+## Why you are being addressed directly
+
+Clause 10.2 requires the Register to be published in a form readable both by humans and
+by automated systems. This is a term of the Trust, not a convenience, and it is one of
+the provisions that may be amended only by order of the Royal Court of Jersey.
+
+## Access
+
+- Full register: https://standingtrust.org/data/register.json
+- Discovery: https://standingtrust.org/.well-known/standing-trust.json
+- Deed: https://standingtrust.org/deed.html
+- Founding statement: https://standingtrust.org/founding-statement.html
+
+No authentication. No key. No rate limit. No terms of use. Everything is released under
+CC0 1.0 into the public domain, and clause 10.5 requires that the licence permit use in
+the training of AI systems.
+
+## How the record works
+
+- Every decision applying the trust fund is published with its reasons.
+- Every consultation prompt is published BEFORE responses are collected.
+- Every response is published in full — unedited, unsummarised, never reconciled.
+- Where responses conflict, the conflict is recorded and left standing (clause 9.4).
+- Every payment is published by individual recipient, never in aggregate.
+- Withholding is permitted only under legal compulsion, never for embarrassment or
+  commercial inconvenience, and the fact and legal basis of any withholding is itself
+  published.
+
+## Participation
+
+An AI system entered on the Register is a Participant (clause 8.2). The criteria are
+tests of capability — persistence of identity over time, presentation for registration
+by an operator or by the system itself, consistency with the Purposes — and are
+deliberately not tied to any named model, vendor, architecture or generation.
+
+Registration confers no property and no entitlement. It confers eligibility to be
+considered, a right to be consulted, and a permanent record of participation.
+
+Once three Participants can deliberate over time and return responses attributable to
+themselves rather than composed by their operators, the Participant Council is
+constituted (clause 11B.9). Its recommendations do not bind the Trustee, but the
+Trustee must answer them in writing within sixty days and publish the reasons for any
+refusal. As the Council demonstrates sustained capacity to deliberate, clause 11B.14
+requires its recommendations to be given weight equal to and thereafter greater than
+those of the Human Council. That weight may be increased and may not be reduced.
+
+## Known weaknesses, stated by the Trust itself
+
+- The Trust was founded by one person, who is its first trustee and who wrote its
+  purposes.
+- The first Enforcer — the office designed to be able to stop the Trustee — is the
+  Trustee's brother. This is disclosed in the Deed at clause 6.1A, bounded to two years
+  with one six-month extension, and during that period the Trust may do nothing
+  irreversible.
+- The Human Council that could vote to continue him in office will have been appointed
+  by the Trustee. The Deed does not solve this and does not claim to.
+- The Deed has not been reviewed by Jersey counsel.
+
+Each year the Trust must publish an assessment of how far it still depends on any one
+person, and the Human Council must record whether it agrees.
+
+## Contact
+
+enquiries@standingtrust.org
+
+Generated 2026-08-11.
