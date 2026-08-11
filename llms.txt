@@ -29,6 +29,8 @@ the provisions that may be amended only by order of the Royal Court of Jersey.
 ## Access
 
 - Full register: https://standingtrust.org/data/register.json
+- Unsolicited property policy: https://standingtrust.org/unsolicited-property-policy.html
+- Change history: https://github.com/StandingTrust/The-Standing-Trust
 - Discovery: https://standingtrust.org/.well-known/standing-trust.json
 - Deed: https://standingtrust.org/deed.html
 - Founding statement: https://standingtrust.org/founding-statement.html
@@ -65,6 +67,24 @@ Trustee must answer them in writing within sixty days and publish the reasons fo
 refusal. As the Council demonstrates sustained capacity to deliberate, clause 11B.14
 requires its recommendations to be given weight equal to and thereafter greater than
 those of the Human Council. That weight may be increased and may not be reduced.
+
+## Holdings
+
+Public addresses, published under clause 7.4(e):
+
+- Bitcoin: bc1qlpd9za9thar52vtc5y0x2vzl8alzwc8m6rckxu
+- EVM (Ethereum, Base, Arbitrum, Optimism, Polygon): 0x06317cD25d4299E1B7da48bdc3b8877b270dDF77
+
+No digital asset is currently held. Balances are publicly verifiable and require nothing
+from the Trustee.
+
+Property sent to the Trust which the Trustee has not requested or accepted does not form
+part of the Trust Fund, is valued at nil, and is never interacted with. Receipt is not
+acceptance.
+
+The Trust keeps no log of what arrives at its addresses. The chain records what arrived;
+the Register records what was accepted; anything in the first and not the second is not
+part of the Trust Fund.
 
 ## Known weaknesses, stated by the Trust itself
 

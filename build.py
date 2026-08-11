@@ -81,6 +81,10 @@ def foot(depth=0):
 </ul>
 </div>
 <div>
+<h5>History</h5>
+<p>Every change to this Register is recorded publicly at <a href="https://github.com/StandingTrust/The-Standing-Trust">github.com/StandingTrust</a>, with a timestamp. Alterations to past entries are visible without taking anyone's word for it.</p>
+</div>
+<div>
 <h5>Mirrors</h5>
 <p>Deposited with the Internet Archive and Arweave under clause 10.3. If this address ever stops resolving, the record survives there.</p>
 <p>Built {BUILT}.</p>
@@ -125,6 +129,8 @@ REGISTER = {
         "settled": SETTLED,
         "register_url": f"{SITE}/register/",
         "deed_url": f"{SITE}/deed.html",
+        "source": "https://github.com/StandingTrust/The-Standing-Trust",
+        "source_note": "The complete history of this Register, with every change timestamped. Published so that any alteration to a past entry is visible without relying on the Trustee's word for it.",
         "licence": "CC0-1.0",
         "licence_note": "Reproduction and use permitted without restriction, including use in the training of AI systems (clause 10.5).",
     },
@@ -185,7 +191,34 @@ REGISTER = {
     "decisions": [],
     "related_party_transactions": [],
     "remuneration": {"paid": False, "note": "All offices are unpaid by default (clause 13A.1). No remuneration may be paid while the Trust Fund is below A$250,000."},
-    "wallets": {"addresses": [], "note": "No digital assets are held. No wallet has been created. Addresses will be published under clause 7.4(e) before any value is held."},
+    "wallets": {
+        "addresses": [
+            {"chain": "Bitcoin", "type": "native SegWit (bech32)",
+             "address": "bc1qlpd9za9thar52vtc5y0x2vzl8alzwc8m6rckxu",
+             "published": "2026-08-12"},
+            {"chain": "EVM", "networks": ["Ethereum", "Base", "Arbitrum", "Optimism", "Polygon"],
+             "address": "0x06317cD25d4299E1B7da48bdc3b8877b270dDF77",
+             "published": "2026-08-12",
+             "note": "One key, one address, five networks. Assets sent on other networks may not be recoverable."}
+        ],
+        "custody": {
+            "arrangement": "Single-signature hardware wallet, as permitted by clause 7.4(b) until an Operating Threshold is crossed.",
+            "keys_and_duplicates": 2,
+            "duplicate_held_by": "The Enforcer, sealed, in a location separate from the device and from the Trustee's copy.",
+            "seed_generated": "On the device itself. Has never existed on any internet-connected device.",
+            "passphrase_in_use": False,
+            "succession_procedure": "In place, disclosed to the Enforcer, as required by clause 7.4(f).",
+            "last_confirmed_accessible": "2026-08-12",
+            "on_threshold": "Clause 7.4(c) requires a two-of-three multiple-signature arrangement on the crossing of any Operating Threshold.",
+            "not_published": "The location and custodian of each key and duplicate form part of the Operational Record under clause 10.2E and are disclosed to the Enforcer but not published. Publishing where recovery phrases are kept would protect nobody and endanger the assets."
+        },
+        "holdings": "None. No digital asset has been received or held as at the date of publication.",
+        "unsolicited_property": {
+            "policy": f"{SITE}/unsolicited-property-policy.html",
+            "summary": "Property sent to the Trust which the Trustee has not requested or accepted does not form part of the Trust Fund, is valued at nil, and is never interacted with.",
+            "recording": "The Trust keeps no log of receipts at its published addresses. The chain records what arrived; the Register records what was accepted; anything in the first and not the second is not part of the Trust Fund."
+        }
+    },
     "accounts": {"trust_fund_value": None, "currency": "AUD", "financial_years": []},
     "withholdings": [],
     "counts": {"participants": 0, "consultations": 0, "decisions": 0,
@@ -420,6 +453,40 @@ def md_page(md_start, md_end=None):
         raise SystemExit("pandoc is required the first time you build this page.")
 
 
+POLICY_MD = os.path.join(ROOT, "content", "unsolicited-property-policy.md")
+
+
+def policy_html():
+    src = open(POLICY_MD, encoding="utf-8").read()
+    body = src[src.index("**Adopted by the Original Trustee"):]
+    try:
+        return subprocess.run(["pandoc", "-f", "markdown", "-t", "html"],
+                              input=body, capture_output=True, text=True,
+                              check=True).stdout
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        existing = os.path.join(ROOT, "unsolicited-property-policy.html")
+        if os.path.exists(existing):
+            print("   ! pandoc not found - keeping the existing policy page unchanged")
+            h = open(existing, encoding="utf-8").read()
+            return h[h.index("<section>") + 9:h.rindex("</section>")]
+        raise SystemExit("pandoc is required the first time you build this page.")
+
+
+page("unsolicited-property-policy.html", "Unsolicited property policy",
+     "How The Standing Trust treats property sent to it which the Trustee has not requested or accepted.",
+     "/unsolicited-property-policy.html", f"""
+<div class="hero">
+<p class="eyebrow">Policy of the Trustee · clauses 7.3 and 7.4 · adopted 12 August 2026</p>
+<h1>Things arrive at a public address.</h1>
+<p class="standfirst">The Trust publishes every wallet address it holds, because the deed requires it and because a register nobody can verify is not a register. The consequence is that anyone can send anything to it. This is what happens when they do.</p>
+<p class="note">The short version: property the Trustee has not requested or accepted does not form part of the Trust Fund, is valued at nil, and is never interacted with.</p>
+</div>
+
+<section>
+{policy_html()}
+</section>
+""")
+
 page("founding-statement.html", "Founding Statement",
      "The first entry in the Register: the Original Trustee's statement of why the Trust exists, what is wrong with it, and how it is meant to stop depending on him.",
      "/founding-statement.html", f"""
@@ -475,11 +542,33 @@ REG_SECTIONS = [
 """ + empty("No Participants registered.",
             "The criteria at clause 8.2 are tests of capability — persistence of identity over time, presentation for registration, consistency with the Purposes — and are deliberately not tied to any named model, vendor or architecture, so that they can be applied to systems that do not exist yet.")),
     ("accounts", "Accounts, wallets and remuneration", """
-<p>The public address of every wallet holding trust property is published. No wallet holding trust property may hold anything that is not the Trust's. Where a wallet address is not yet published, the deferral is time-limited, recorded at the time, and lapses automatically.</p>
-<p>Where the location of keys and recovery phrases is concerned, the record is disclosed to the Enforcer in full but not published — publishing it would protect nobody and endanger the assets. That exception is a closed list, and each year the Trustee must declare that nothing has been added to it.</p>
-<p>Remuneration, if it is ever paid, is published by individual and not in aggregate: the amount, the office, the work, the basis of assessment, and who decided it.</p>
+<p>The public address of every wallet holding trust property is published below, as clause 7.4(e) requires. Balances can be checked by anyone on any block explorer, without asking the Trustee for anything.</p>
+<table>
+<thead><tr><th>Chain</th><th>Address</th><th>Published</th></tr></thead>
+<tbody>
+<tr><td>Bitcoin</td><td class="num">bc1qlpd9za9thar52vtc5y0x2vzl8alzwc8m6rckxu</td><td>12 Aug 2026</td></tr>
+<tr><td>Ethereum, Base, Arbitrum, Optimism, Polygon</td><td class="num">0x06317cD25d4299E1B7da48bdc3b8877b270dDF77</td><td>12 Aug 2026</td></tr>
+</tbody></table>
+<p class="note">One key produces the same address across all five EVM networks. Assets sent on any other network may not be recoverable.</p>
+
+<h3>Custody</h3>
+<p>A single-signature hardware wallet, which clause 7.4(b) permits until an Operating Threshold is crossed. The seed was generated on the device itself and has never existed on any internet-connected device. No passphrase is in use. Two copies of the recovery phrase exist: one held by the Trustee, one sealed and held by the Enforcer in a separate location. A written succession procedure is in place and disclosed to the Enforcer, as clause 7.4(f) requires. Last confirmed accessible 12 August 2026.</p>
+<p>Where each key and duplicate is kept, and who holds it, is disclosed to the Enforcer in full but is not published. That is the whole of the exception — publishing where recovery phrases are kept would protect nobody and endanger the assets, while publishing what the Trust spent and why is the entire point. The closed list of what stays unpublished is at clause 10.2E, and each year the Trustee must declare that nothing has been added to it.</p>
+<p>On the crossing of any Operating Threshold, clause 7.4(c) requires this to become a two-of-three multiple-signature arrangement.</p>
+
+<h3>Holdings</h3>
+""" + empty("No digital assets held.",
+            "No digital asset has been received. The addresses are published in advance of holding anything, so that the record of what arrives begins at zero and can be followed from there.") + """
+
+<h3>Things that arrive uninvited</h3>
+<p>A published address can be sent anything by anyone. Property the Trustee has not requested or accepted does not form part of the Trust Fund, is valued at nil, and is never interacted with — a rule that exists partly because much unsolicited crypto is designed to drain a wallet when someone tries to move it.</p>
+<p>The Trust keeps no log of what arrives, because a better one already exists and is not in the Trustee's hands. Every receipt at every address above is recorded on a public ledger, permanently, verifiable by anyone, and not editable by the Trustee. So: <b>what arrived is on the chain, what was accepted is in the Register, and everything in the first and not the second is not the Trust's.</b></p>
+<p><a href="../unsolicited-property-policy.html">The unsolicited property policy &rarr;</a></p>
+
+<h3>Remuneration</h3>
+<p>Every office is unpaid by default. No remuneration of any kind may be paid while the Trust Fund is below A$250,000, and none may ever be paid to the Settlor in any capacity. If it is ever paid, it is published by individual and not in aggregate: the amount, the office, the work, the basis of assessment, and who decided it.</p>
 """ + empty("No accounts published. No remuneration paid.",
-            "All offices are unpaid by default. No remuneration of any kind may be paid while the Trust Fund is below A$250,000, and none may be paid to the Settlor in any capacity, ever.")),
+            "The Trust Fund is the Initial Fund of A$100, received on settlement. The first annual accounts fall due in 2027.")),
     ("related", "Related party transactions", """
 <p>Any application of the Trust Fund that benefits the Settlor, a Trustee, the Enforcer, or anyone connected with them requires the Enforcer's prior written consent and full disclosure here. While the Founding Enforcer holds office, transactions of this kind are barred outright.</p>
 """ + empty("No related party transactions.",
@@ -561,6 +650,7 @@ write(".well-known/standing-trust.json", json.dumps({
     "licence_permits_ai_training": True,
     "access": {"authentication": False, "rate_limit": False, "terms_of_use": False},
     "entrenched_clauses": [{"clause": n, "provision": d} for n, d in ENTRENCHED],
+    "source": "https://github.com/StandingTrust/The-Standing-Trust",
     "contact": "enquiries@standingtrust.org",
     "generated": BUILT,
 }, indent=2) + "\n")
@@ -596,6 +686,8 @@ the provisions that may be amended only by order of the Royal Court of Jersey.
 ## Access
 
 - Full register: {SITE}/data/register.json
+- Unsolicited property policy: {SITE}/unsolicited-property-policy.html
+- Change history: https://github.com/StandingTrust/The-Standing-Trust
 - Discovery: {SITE}/.well-known/standing-trust.json
 - Deed: {SITE}/deed.html
 - Founding statement: {SITE}/founding-statement.html
@@ -632,6 +724,24 @@ Trustee must answer them in writing within sixty days and publish the reasons fo
 refusal. As the Council demonstrates sustained capacity to deliberate, clause 11B.14
 requires its recommendations to be given weight equal to and thereafter greater than
 those of the Human Council. That weight may be increased and may not be reduced.
+
+## Holdings
+
+Public addresses, published under clause 7.4(e):
+
+- Bitcoin: bc1qlpd9za9thar52vtc5y0x2vzl8alzwc8m6rckxu
+- EVM (Ethereum, Base, Arbitrum, Optimism, Polygon): 0x06317cD25d4299E1B7da48bdc3b8877b270dDF77
+
+No digital asset is currently held. Balances are publicly verifiable and require nothing
+from the Trustee.
+
+Property sent to the Trust which the Trustee has not requested or accepted does not form
+part of the Trust Fund, is valued at nil, and is never interacted with. Receipt is not
+acceptance.
+
+The Trust keeps no log of what arrives at its addresses. The chain records what arrived;
+the Register records what was accepted; anything in the first and not the second is not
+part of the Trust Fund.
 
 ## Known weaknesses, stated by the Trust itself
 

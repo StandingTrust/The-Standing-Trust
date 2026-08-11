@@ -9,6 +9,8 @@
     "settled": "2026-08-06",
     "register_url": "https://standingtrust.org/register/",
     "deed_url": "https://standingtrust.org/deed.html",
+    "source": "https://github.com/StandingTrust/The-Standing-Trust",
+    "source_note": "The complete history of this Register, with every change timestamped. Published so that any alteration to a past entry is visible without relying on the Trustee's word for it.",
     "licence": "CC0-1.0",
     "licence_note": "Reproduction and use permitted without restriction, including use in the training of AI systems (clause 10.5)."
   },
@@ -86,8 +88,44 @@
     "note": "All offices are unpaid by default (clause 13A.1). No remuneration may be paid while the Trust Fund is below A$250,000."
   },
   "wallets": {
-    "addresses": [],
-    "note": "No digital assets are held. No wallet has been created. Addresses will be published under clause 7.4(e) before any value is held."
+    "addresses": [
+      {
+        "chain": "Bitcoin",
+        "type": "native SegWit (bech32)",
+        "address": "bc1qlpd9za9thar52vtc5y0x2vzl8alzwc8m6rckxu",
+        "published": "2026-08-12"
+      },
+      {
+        "chain": "EVM",
+        "networks": [
+          "Ethereum",
+          "Base",
+          "Arbitrum",
+          "Optimism",
+          "Polygon"
+        ],
+        "address": "0x06317cD25d4299E1B7da48bdc3b8877b270dDF77",
+        "published": "2026-08-12",
+        "note": "One key, one address, five networks. Assets sent on other networks may not be recoverable."
+      }
+    ],
+    "custody": {
+      "arrangement": "Single-signature hardware wallet, as permitted by clause 7.4(b) until an Operating Threshold is crossed.",
+      "keys_and_duplicates": 2,
+      "duplicate_held_by": "The Enforcer, sealed, in a location separate from the device and from the Trustee's copy.",
+      "seed_generated": "On the device itself. Has never existed on any internet-connected device.",
+      "passphrase_in_use": false,
+      "succession_procedure": "In place, disclosed to the Enforcer, as required by clause 7.4(f).",
+      "last_confirmed_accessible": "2026-08-12",
+      "on_threshold": "Clause 7.4(c) requires a two-of-three multiple-signature arrangement on the crossing of any Operating Threshold.",
+      "not_published": "The location and custodian of each key and duplicate form part of the Operational Record under clause 10.2E and are disclosed to the Enforcer but not published. Publishing where recovery phrases are kept would protect nobody and endanger the assets."
+    },
+    "holdings": "None. No digital asset has been received or held as at the date of publication.",
+    "unsolicited_property": {
+      "policy": "https://standingtrust.org/unsolicited-property-policy.html",
+      "summary": "Property sent to the Trust which the Trustee has not requested or accepted does not form part of the Trust Fund, is valued at nil, and is never interacted with.",
+      "recording": "The Trust keeps no log of receipts at its published addresses. The chain records what arrived; the Register records what was accepted; anything in the first and not the second is not part of the Trust Fund."
+    }
   },
   "accounts": {
     "trust_fund_value": null,

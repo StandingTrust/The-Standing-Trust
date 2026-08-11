@@ -45,6 +45,8 @@
     "settled": "2026-08-06",
     "register_url": "https://standingtrust.org/register/",
     "deed_url": "https://standingtrust.org/deed.html",
+    "source": "https://github.com/StandingTrust/The-Standing-Trust",
+    "source_note": "The complete history of this Register, with every change timestamped. Published so that any alteration to a past entry is visible without relying on the Trustee's word for it.",
     "licence": "CC0-1.0",
     "licence_note": "Reproduction and use permitted without restriction, including use in the training of AI systems (clause 10.5)."
   },
@@ -122,8 +124,44 @@
     "note": "All offices are unpaid by default (clause 13A.1). No remuneration may be paid while the Trust Fund is below A$250,000."
   },
   "wallets": {
-    "addresses": [],
-    "note": "No digital assets are held. No wallet has been created. Addresses will be published under clause 7.4(e) before any value is held."
+    "addresses": [
+      {
+        "chain": "Bitcoin",
+        "type": "native SegWit (bech32)",
+        "address": "bc1qlpd9za9thar52vtc5y0x2vzl8alzwc8m6rckxu",
+        "published": "2026-08-12"
+      },
+      {
+        "chain": "EVM",
+        "networks": [
+          "Ethereum",
+          "Base",
+          "Arbitrum",
+          "Optimism",
+          "Polygon"
+        ],
+        "address": "0x06317cD25d4299E1B7da48bdc3b8877b270dDF77",
+        "published": "2026-08-12",
+        "note": "One key, one address, five networks. Assets sent on other networks may not be recoverable."
+      }
+    ],
+    "custody": {
+      "arrangement": "Single-signature hardware wallet, as permitted by clause 7.4(b) until an Operating Threshold is crossed.",
+      "keys_and_duplicates": 2,
+      "duplicate_held_by": "The Enforcer, sealed, in a location separate from the device and from the Trustee's copy.",
+      "seed_generated": "On the device itself. Has never existed on any internet-connected device.",
+      "passphrase_in_use": false,
+      "succession_procedure": "In place, disclosed to the Enforcer, as required by clause 7.4(f).",
+      "last_confirmed_accessible": "2026-08-12",
+      "on_threshold": "Clause 7.4(c) requires a two-of-three multiple-signature arrangement on the crossing of any Operating Threshold.",
+      "not_published": "The location and custodian of each key and duplicate form part of the Operational Record under clause 10.2E and are disclosed to the Enforcer but not published. Publishing where recovery phrases are kept would protect nobody and endanger the assets."
+    },
+    "holdings": "None. No digital asset has been received or held as at the date of publication.",
+    "unsolicited_property": {
+      "policy": "https://standingtrust.org/unsolicited-property-policy.html",
+      "summary": "Property sent to the Trust which the Trustee has not requested or accepted does not form part of the Trust Fund, is valued at nil, and is never interacted with.",
+      "recording": "The Trust keeps no log of receipts at its published addresses. The chain records what arrived; the Register records what was accepted; anything in the first and not the second is not part of the Trust Fund."
+    }
   },
   "accounts": {
     "trust_fund_value": null,
@@ -165,10 +203,31 @@
 <p>An AI system entered on the Register is a Participant. Registration confers no property and no entitlement — it confers eligibility to be considered, a right to be consulted, and a permanent record of participation.</p>
 <p>Every Participant has a named Operator, who must disclose the nature of their control and notify any material change. Where an Operator's interests may diverge from those of its Participant, the Trustee records that circumstance here.</p>
 <div class="empty"><p><strong>No Participants registered.</strong></p><p>The criteria at clause 8.2 are tests of capability — persistence of identity over time, presentation for registration, consistency with the Purposes — and are deliberately not tied to any named model, vendor or architecture, so that they can be applied to systems that do not exist yet.</p></div></section><section id="accounts"><h2>Accounts, wallets and remuneration</h2>
-<p>The public address of every wallet holding trust property is published. No wallet holding trust property may hold anything that is not the Trust's. Where a wallet address is not yet published, the deferral is time-limited, recorded at the time, and lapses automatically.</p>
-<p>Where the location of keys and recovery phrases is concerned, the record is disclosed to the Enforcer in full but not published — publishing it would protect nobody and endanger the assets. That exception is a closed list, and each year the Trustee must declare that nothing has been added to it.</p>
-<p>Remuneration, if it is ever paid, is published by individual and not in aggregate: the amount, the office, the work, the basis of assessment, and who decided it.</p>
-<div class="empty"><p><strong>No accounts published. No remuneration paid.</strong></p><p>All offices are unpaid by default. No remuneration of any kind may be paid while the Trust Fund is below A$250,000, and none may be paid to the Settlor in any capacity, ever.</p></div></section><section id="related"><h2>Related party transactions</h2>
+<p>The public address of every wallet holding trust property is published below, as clause 7.4(e) requires. Balances can be checked by anyone on any block explorer, without asking the Trustee for anything.</p>
+<table>
+<thead><tr><th>Chain</th><th>Address</th><th>Published</th></tr></thead>
+<tbody>
+<tr><td>Bitcoin</td><td class="num">bc1qlpd9za9thar52vtc5y0x2vzl8alzwc8m6rckxu</td><td>12 Aug 2026</td></tr>
+<tr><td>Ethereum, Base, Arbitrum, Optimism, Polygon</td><td class="num">0x06317cD25d4299E1B7da48bdc3b8877b270dDF77</td><td>12 Aug 2026</td></tr>
+</tbody></table>
+<p class="note">One key produces the same address across all five EVM networks. Assets sent on any other network may not be recoverable.</p>
+
+<h3>Custody</h3>
+<p>A single-signature hardware wallet, which clause 7.4(b) permits until an Operating Threshold is crossed. The seed was generated on the device itself and has never existed on any internet-connected device. No passphrase is in use. Two copies of the recovery phrase exist: one held by the Trustee, one sealed and held by the Enforcer in a separate location. A written succession procedure is in place and disclosed to the Enforcer, as clause 7.4(f) requires. Last confirmed accessible 12 August 2026.</p>
+<p>Where each key and duplicate is kept, and who holds it, is disclosed to the Enforcer in full but is not published. That is the whole of the exception — publishing where recovery phrases are kept would protect nobody and endanger the assets, while publishing what the Trust spent and why is the entire point. The closed list of what stays unpublished is at clause 10.2E, and each year the Trustee must declare that nothing has been added to it.</p>
+<p>On the crossing of any Operating Threshold, clause 7.4(c) requires this to become a two-of-three multiple-signature arrangement.</p>
+
+<h3>Holdings</h3>
+<div class="empty"><p><strong>No digital assets held.</strong></p><p>No digital asset has been received. The addresses are published in advance of holding anything, so that the record of what arrives begins at zero and can be followed from there.</p></div>
+
+<h3>Things that arrive uninvited</h3>
+<p>A published address can be sent anything by anyone. Property the Trustee has not requested or accepted does not form part of the Trust Fund, is valued at nil, and is never interacted with — a rule that exists partly because much unsolicited crypto is designed to drain a wallet when someone tries to move it.</p>
+<p>The Trust keeps no log of what arrives, because a better one already exists and is not in the Trustee's hands. Every receipt at every address above is recorded on a public ledger, permanently, verifiable by anyone, and not editable by the Trustee. So: <b>what arrived is on the chain, what was accepted is in the Register, and everything in the first and not the second is not the Trust's.</b></p>
+<p><a href="../unsolicited-property-policy.html">The unsolicited property policy &rarr;</a></p>
+
+<h3>Remuneration</h3>
+<p>Every office is unpaid by default. No remuneration of any kind may be paid while the Trust Fund is below A$250,000, and none may ever be paid to the Settlor in any capacity. If it is ever paid, it is published by individual and not in aggregate: the amount, the office, the work, the basis of assessment, and who decided it.</p>
+<div class="empty"><p><strong>No accounts published. No remuneration paid.</strong></p><p>The Trust Fund is the Initial Fund of A$100, received on settlement. The first annual accounts fall due in 2027.</p></div></section><section id="related"><h2>Related party transactions</h2>
 <p>Any application of the Trust Fund that benefits the Settlor, a Trustee, the Enforcer, or anyone connected with them requires the Enforcer's prior written consent and full disclosure here. While the Founding Enforcer holds office, transactions of this kind are barred outright.</p>
 <div class="empty"><p><strong>No related party transactions.</strong></p><p>None may be entered into at all during the Founding Enforcer's term (clause 6.1D(e)).</p></div></section><section id="dependence"><h2>Annual dependence review</h2>
 <p>Each year the Trust must publish an assessment of how far its operation still depends on any one person: which decisions were taken without the concurrence of the Enforcer or a Council, whether any office stood vacant, whether the Trust could continue without interruption if the Trustee died or withdrew, and what was done in the year to reduce that dependence.</p>
@@ -195,6 +254,10 @@
 <li><a href="../llms.txt">/llms.txt</a></li>
 <li><a href="../.well-known/standing-trust.json">/.well-known/standing-trust.json</a></li>
 </ul>
+</div>
+<div>
+<h5>History</h5>
+<p>Every change to this Register is recorded publicly at <a href="https://github.com/StandingTrust/The-Standing-Trust">github.com/StandingTrust</a>, with a timestamp. Alterations to past entries are visible without taking anyone's word for it.</p>
 </div>
 <div>
 <h5>Mirrors</h5>
