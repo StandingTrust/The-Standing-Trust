@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://standingtrust.org/</loc><lastmod>2026-08-11</lastmod></url>
-<url><loc>https://standingtrust.org/deed.html</loc><lastmod>2026-08-11</lastmod></url>
-<url><loc>https://standingtrust.org/register/</loc><lastmod>2026-08-11</lastmod></url>
-<url><loc>https://standingtrust.org/founding-statement.html</loc><lastmod>2026-08-11</lastmod></url>
-<url><loc>https://standingtrust.org/machine.html</loc><lastmod>2026-08-11</lastmod></url>
+<url><loc>https://standingtrust.org/</loc><lastmod>2026-08-12</lastmod></url>
+<url><loc>https://standingtrust.org/deed.html</loc><lastmod>2026-08-12</lastmod></url>
+<url><loc>https://standingtrust.org/register/</loc><lastmod>2026-08-12</lastmod></url>
+<url><loc>https://standingtrust.org/founding-statement.html</loc><lastmod>2026-08-12</lastmod></url>
+<url><loc>https://standingtrust.org/door.html</loc><lastmod>2026-08-12</lastmod></url>
+<url><loc>https://standingtrust.org/unsolicited-property-policy.html</loc><lastmod>2026-08-12</lastmod></url>
+<url><loc>https://standingtrust.org/machine.html</loc><lastmod>2026-08-12</lastmod></url>
 </urlset>
