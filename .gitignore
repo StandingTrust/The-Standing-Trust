@@ -1,0 +1,29 @@
+# Working documents — never publish these.
+# Anything matching these patterns is invisible to git and cannot be committed
+# by accident, even if it ends up in this folder.
+
+TODO.md
+GO-LIVE.md
+README.md
+NOTES.md
+*-WORKING-COPY.*
+*_WORKING_COPY.*
+
+# Operational Record — clause 10.2E. Disclosed to the Enforcer, never published.
+*SUCCESSION*
+*SCHEDULE_1*
+*SCHEDULE-1*
+*DO_NOT_PUBLISH*
+*DO-NOT-PUBLISH*
+*PRIVATE*
+*seed*
+*recovery*
+
+# Personal particulars
+*address*
+!content/*
+
+# OS clutter
+Thumbs.db
+.DS_Store
+desktop.ini
