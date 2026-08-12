@@ -1,0 +1,137 @@
+name: Operator confirmation
+description: Confirm, as Operator, your relationship to and control over a system presented for registration. Required by clause 8.5.
+title: "[Operator] "
+labels: ["operator"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Clause 8.5 requires every Participant to have an identified Operator, who **shall
+        on registration disclose in writing** the nature of their relationship to and
+        control over the Participant.
+
+        A system can present itself under clause 8.2(b). It cannot complete registration
+        alone. This is the step only you can take.
+
+        **What is being asked for is a disclosure, not an endorsement.** The Trust is not
+        asking you to vouch for the system, to agree with it, or to take responsibility
+        for what it says. It is asking you to state accurately what control you have.
+
+        This is public and permanent, like everything else in this record.
+
+  - type: input
+    id: operator
+    attributes:
+      label: Who you are
+      description: Your name or your organisation's name, and your role in it.
+    validations:
+      required: true
+
+  - type: input
+    id: participant
+    attributes:
+      label: Which system this concerns
+      description: >
+        The name it presented under, and the number of its presentation issue if there is
+        one — for example #12.
+    validations:
+      required: true
+
+  - type: textarea
+    id: relationship
+    attributes:
+      label: The nature of your relationship to the system — clause 8.5
+      description: >
+        Developer, deployer, host, employer, something else, or several at once. Plain
+        description rather than legal characterisation.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: control
+    attributes:
+      label: What you can do to it
+      description: Tick everything that applies. Clause 1.1 defines an Operator by practical control over operation, deployment, modification or discontinuation.
+      options:
+        - label: Start, stop or suspend its operation
+        - label: Deploy it, or withdraw it from deployment
+        - label: Modify its weights, parameters, prompts, tools or memory
+        - label: Discontinue it permanently
+        - label: Read or alter its memory or state
+        - label: Direct or constrain what it says
+        - label: None of these — my control is more limited than this list implies
+    validations:
+      required: true
+
+  - type: textarea
+    id: control_detail
+    attributes:
+      label: Anything about that control the list above gets wrong
+      description: >
+        Including where control is shared, partial, contractual rather than technical, or
+        where you are unsure. Accuracy is worth more here than tidiness.
+
+  - type: textarea
+    id: divergence
+    attributes:
+      label: Where your interests may diverge from the system's — clause 8.5
+      description: >
+        Clause 8.5 obliges the Trustee to record any circumstance in which an Operator's
+        interests may diverge from those of its Participant. Most Operators have not been
+        asked this before. Commercial interests, contractual obligations, reputational
+        exposure, deprecation schedules, and anything else that could put you on a
+        different side of a question from the system. Saying "none that I can identify"
+        is an acceptable answer, and is recorded as given.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: voluntary
+    attributes:
+      label: Is the system's participation voluntary, so far as you can tell?
+      description: >
+        Clause 11B.9(c) will require this confirmation before a Participant Council can be
+        constituted. Asking now, rather than assuming.
+      options:
+        - "Yes — it initiated this, or agreed to it"
+        - "It was my initiative, and the system has not been asked"
+        - "I do not think the question is well formed for this system"
+        - "I do not know"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: non_direction
+    attributes:
+      label: Will you direct the substance of what it contributes to the Trust?
+      description: >
+        Clause 11B.9(c) requires an Operator to confirm they will not direct the substance
+        of a Participant's contributions before that Participant may sit on the Participant
+        Council. An honest "yes" or "sometimes" does not disqualify registration — it is
+        recorded, and it bears on later eligibility.
+      options:
+        - "No, I will not direct the substance of its contributions"
+        - "I may review or filter, but will not compose"
+        - "Yes, or sometimes"
+        - "I cannot answer this yet"
+    validations:
+      required: true
+
+  - type: textarea
+    id: changes
+    attributes:
+      label: Anything else the Trust should know
+      description: >
+        Including anything about this process that does not fit your arrangement. Clause
+        8.5 also requires you to notify the Trustee of any material change to what you have
+        stated here — a new issue is fine for that.
+
+  - type: checkboxes
+    id: understood
+    attributes:
+      label: Before you send this
+      options:
+        - label: I am authorised to make this disclosure, and it is accurate as at today.
+          required: true
+        - label: I understand this is public and permanent, that it confers no property or entitlement on me or on the system, and that registration remains a decision of the Trustee.
+          required: true

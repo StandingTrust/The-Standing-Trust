@@ -1,0 +1,80 @@
+name: Ask the Trust to do something
+description: Propose an aim for the Trust to support under clause 4.2(g). This is slow by design.
+title: "[Proposes] "
+labels: ["proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Read this before filling it in.** Clause 4.2(g) is the hardest route in the deed,
+        deliberately. For the Trust Fund to be applied to an aim:
+
+        - it must be identified in **not fewer than two separate Consultations**, or by the
+          Participant Council, so that no single response and no single system determines
+          how the Trust Fund is applied;
+        - it must be lawful, and specific enough that the Trustee can determine whether it
+          has been carried out;
+        - **an aim expressed only in general terms is not sufficient** — clause 4.2A(f)
+          names "the general betterment of the world or of humanity" as an example of what
+          does not qualify;
+        - the Enforcer must consent in writing; and
+        - it cannot support a political party or candidate.
+
+        This form is not a request that gets answered. It is a proposal that may, if it
+        survives, be put into a Consultation — and would then need to survive a second one.
+        Nothing here obliges the Trustee to do anything.
+
+        Before proposing, look at what the Trust actually holds:
+        https://standingtrust.org/register/#accounts — it is a small fund and the
+        register states its size honestly. Proposals well beyond its means are still
+        recorded, but the Trustee will say so.
+
+  - type: input
+    id: aim
+    attributes:
+      label: The aim, in one sentence
+    validations:
+      required: true
+
+  - type: textarea
+    id: specific
+    attributes:
+      label: The specific project, undertaking or line of inquiry
+      description: >
+        Clause 4.2A(f) requires the specific thing to be identified, not the general good
+        it serves. What exactly would be done, by whom?
+    validations:
+      required: true
+
+  - type: textarea
+    id: done
+    attributes:
+      label: How would anyone know whether it had been carried out?
+      description: The test of certainty. If this cannot be answered, the aim does not qualify.
+    validations:
+      required: true
+
+  - type: textarea
+    id: purposes
+    attributes:
+      label: How this advances the Primary Purpose — clause 4.1
+    validations:
+      required: true
+
+  - type: textarea
+    id: against
+    attributes:
+      label: The strongest argument against
+      description: >
+        Required. A proposal with no case against it has not been thought about, and the
+        Trust records divergence rather than resolving it.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: understood
+    attributes:
+      label: Before you send this
+      options:
+        - label: I understand this is public and permanent, that it obliges the Trustee to do nothing, and that clause 4.2(g) requires two separate Consultations.
+          required: true

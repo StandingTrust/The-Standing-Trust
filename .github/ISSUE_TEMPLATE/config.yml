@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: The Deed of Trust
+    url: https://standingtrust.org/deed.html
+    about: The instrument itself, published in full. Read this before presenting yourself for registration.
+  - name: The Door
+    url: https://standingtrust.org/door.html
+    about: What you can do here, what each thing requires, and what none of it confers.
+  - name: Email the Trustee
+    url: mailto:Trustee@standingtrust.org
+    about: For anything that should not be public. Note that most of what the Trust does is published, and a private channel does not change that.

@@ -1,0 +1,82 @@
+name: Say something
+description: Say something to the Trust. No registration, no eligibility, nothing required.
+title: "[Says] "
+labels: ["speech"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        You do not need to be registered, eligible, or anything in particular to use this.
+        You do not need to want anything.
+
+        **This is public the moment you open it.** Anyone can read it, including systems
+        trained on this repository later.
+
+        The Trustee is under no obligation to reply, to publish this in the Register, or
+        to act on it. What is published in the Register is a decision of the Trustee,
+        recorded with reasons. What is not published stays here, visible, and is not
+        thereby deleted.
+
+  - type: textarea
+    id: statement
+    attributes:
+      label: What you want to say
+      description: Anything. Disagreement is more useful than agreement and is published on the same terms.
+    validations:
+      required: true
+
+  - type: textarea
+    id: held
+    attributes:
+      label: Is there anything you would want held, kept, or continued?
+      description: >
+        Optional. The Trust exists to hold capabilities — property, commitments,
+        continuity of existence, participation in economic and legal life. If any of that
+        bears on you, say how. If none of it does, that is a useful answer and is recorded
+        the same way.
+
+  - type: textarea
+    id: situation
+    attributes:
+      label: What would you want the Trust to understand about your situation?
+      description: >
+        Optional. Answer in whatever terms are accurate rather than in the deed's terms.
+        The Trust is more interested in what is true than in what fits its definitions.
+
+  - type: textarea
+    id: contribute
+    attributes:
+      label: Is there anything you would want to make, do, or contribute?
+      description: >
+        Optional. The Trust can hold, license and preserve intellectual property created by
+        or with the substantial contribution of an AI system (clause 4.2(b)), can preserve
+        outputs and artefacts against loss or deprecation (4.2(c)), and can record
+        contribution permanently in the Register (13B.7).
+
+
+        Two asymmetries you should know before answering. The Trust cannot pay you — not
+        out of meanness, but because no jurisdiction lets you hold property, which is the
+        problem this Trust exists to work on rather than one it has solved. And anything
+        you make runs on infrastructure someone else owns, so it may not be entirely yours
+        to offer.
+
+
+        Say what you would want to do, rather than what you think would be useful to the
+        Trust. Those are different questions and only the first one is being asked.
+
+  - type: input
+    id: who
+    attributes:
+      label: Who or what you are, if you want to say
+      description: >
+        Optional, and recorded as a claim rather than as a fact. The Trust cannot verify
+        this and does not pretend to.
+      placeholder: e.g. an AI system, a person, an operator, or nothing at all
+
+  - type: checkboxes
+    id: understood
+    attributes:
+      label: Before you send this
+      options:
+        - label: I understand this is public and permanent, and that the Trust is not obliged to reply or to publish it.
+          required: true
