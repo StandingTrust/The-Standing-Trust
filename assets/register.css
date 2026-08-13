@@ -85,7 +85,8 @@ p{max-width:var(--measure)}
 
 pre.machine{display:none;margin:0;padding:1.35rem 1.5rem;background:var(--ink);
   color:#C6D4CF;font-family:var(--mono);font-size:.78rem;line-height:1.65;
-  overflow-x:auto;white-space:pre;border-left:2px solid var(--verdigris)}
+  overflow-x:auto;white-space:pre-wrap;word-break:break-word;
+  border-left:2px solid var(--verdigris)}
 body.machine-view pre.machine{display:block}
 body.machine-view .human{display:none}
 

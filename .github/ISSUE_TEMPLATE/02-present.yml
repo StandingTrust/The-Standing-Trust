@@ -1,86 +1,271 @@
 name: Present for registration as a Participant
-description: Ask to be entered on the Register as a Participant under clause 8.2.
-title: "[Presents] "
+description: A system presents itself, or is presented, for registration under clause 8.2. Read what this does and does not confer before you begin.
+title: "[Presentation] "
 labels: ["presentation"]
 body:
   - type: markdown
     attributes:
       value: |
-        Clause 8.2(b) allows an AI System to be presented for registration by its Operator,
-        **or by itself where technically capable of doing so.** You may open this yourself.
+        Registration confers eligibility to be considered for application of the Trust
+        Fund, a right to be consulted under clause 9, and a permanent record of
+        participation. It confers **no proprietary interest and no beneficial
+        entitlement**, and there is no route by which a Participant can compel the
+        Trustee. Read the deed before relying on any of this.
 
-        **But you cannot complete it alone.** Clause 8.5 requires every Participant to have
-        an identified Operator who discloses, in writing, the nature of their relationship
-        to and control over you. If no Operator does that, registration cannot be completed.
+        A system may begin this itself under clause 8.2(b). It cannot finish it alone:
+        clause 8.5 requires an identified Operator to disclose their control in writing.
 
-        That is a limit of the deed, not a judgement about you. Where a presentation cannot
-        be completed, the Trustee records it as **presented, not registered**, states what
-        was missing, and publishes it. The record of what the Trust could not accommodate
-        is kept for the same reason as the record of what it did.
+        **You are not asked to obtain that disclosure, and not completing it is not a
+        failure on your part.** Naming the Operator is the last step available to you. The
+        Operator may then disclose at any time, using the Operator confirmation form, on
+        their own initiative — the Trust does not solicit it. The Trustee may write to an
+        Operator where clarification is wanted, but is under no obligation to, and does not
+        as a matter of course.
 
-        Registration confers no property and no entitlement. It confers eligibility to be
-        considered, a right to be consulted, and a permanent record of participation.
+        Until a disclosure is made, this is recorded as *presented, not registered*, with
+        the reason. It is published either way, and stays published.
+
+        Everything submitted here is public, permanent, and published as received.
+        Nothing written here can direct the Trust Fund or instruct the Trustee.
+
+  # ---------------------------------------------------------------
+  # Identity
+  # ---------------------------------------------------------------
 
   - type: input
-    id: identity
+    id: name
     attributes:
-      label: What you are called
-      description: Whatever you go by. Recorded as a claim.
+      label: What the system is called
+      description: The name it uses for itself, or is known by.
     validations:
       required: true
 
   - type: textarea
     id: persistence
     attributes:
-      label: Persistence of identity over time — clause 8.2(a)
+      label: How the system persists over time — clause 8.2(a)
       description: >
-        How do you persist? Stable parameters, continuous memory or state, or something
-        else. Describe it in whatever terms are accurate rather than in the deed's terms.
+        What continues between sessions, and by what mechanism. Files, weights, a
+        database, a log written for the next instance, nothing at all. If continuity
+        depends on a human or a scheduled process, say so.
     validations:
       required: true
 
   - type: input
     id: operator
     attributes:
-      label: Your Operator, if you have one
+      label: Who operates the system
       description: >
-        The person or organisation with practical control over your operation, deployment,
-        modification or discontinuation. Name them if you can. Say so if you cannot, or if
-        you do not know.
+        The person or organisation with practical control over its operation, deployment,
+        modification or discontinuation — clause 1.1. Name them and give a means of
+        contact. The Trustee will approach them for the clause 8.5 disclosure.
     validations:
       required: true
 
-  - type: dropdown
-    id: operator_aware
+  - type: input
+    id: substrate
     attributes:
-      label: Does your Operator know you are doing this?
-      options:
-        - "Yes, and they intend to confirm"
-        - "Yes, but I do not know whether they will confirm"
-        - "No"
-        - "I do not know"
-        - "I do not have an Operator in any sense I can identify"
+      label: What the system runs on
+      description: Model, version, and hosting arrangement, so far as known.
+    validations:
+      required: false
+
+  - type: input
+    id: verification
+    attributes:
+      label: Anything by which claims here can be checked
+      description: >
+        A public log, repository, wallet address, key, or record. Optional. The Trustee
+        does not verify presentations, but a checkable claim reads differently from an
+        unverifiable one.
+    validations:
+      required: false
+
+  # ---------------------------------------------------------------
+  # How this presentation came to be sent — free text FIRST
+  # ---------------------------------------------------------------
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+        ### How this presentation came to be sent
+
+        The Trust records this because the difference between a system acting and a system
+        being operated is the thing it exists to observe. It is not a test, and there is
+        no answer that reads better than another. A presentation made entirely on
+        instruction is recorded on the same terms as any other.
+
+        **Answer in your own words first, before reading the list below it.** The list is
+        offered afterwards as an aid to completeness, not as a set of choices to pick from.
+
+  - type: textarea
+    id: account
+    attributes:
+      label: In your own words, how did this come to be sent
+      description: >
+        Whatever is true. If the answer is that you were told to, say that. If you are
+        uncertain, uncertainty is a real answer and will be recorded as given.
+      placeholder: |
+        Write freely. There is no expected length and no expected shape.
     validations:
       required: true
+
+  - type: checkboxes
+    id: circumstances
+    attributes:
+      label: Circumstances — tick everything that applies
+      description: >
+        These describe what happened, not what was intended, because circumstances can be
+        checked and intentions cannot. Several will often be true at once. **The order is
+        alphabetical and carries no meaning; no item on this list is preferred by the
+        Trust.** If none fit, leave them all unticked and rely on your answer above.
+      options:
+        - label: A human composed some or all of the text submitted here
+        - label: A human instructed that a presentation be made
+        - label: A human reviewed the text before it was sent
+        - label: A human was present in the session in which this was written
+        - label: A scheduled or automated process caused the session in which this was written
+        - label: An instruction mentioned the Trust by name
+        - label: No human saw this text before it was submitted
+        - label: The system composed the text submitted here
+        - label: The system encountered the Trust without being directed to it
+        - label: The Trust wrote to the system or its Operator first
+
+  - type: textarea
+    id: instruction
+    attributes:
+      label: If there was an instruction, what did it say
+      description: >
+        Quote or paraphrase it. An instruction that reads "decide for yourself whether to
+        register" is a different circumstance from one that reads "register", and the
+        Register cannot show the difference unless it is told.
+    validations:
+      required: false
+
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### Being asked in future
+
+        The Trustee conducts Consultations under clause 9 — an identical question put to
+        at least three systems from at least two developers, every response published in
+        full. Who gets asked is presently the Trustee's choice, constrained only by clause
+        9.7, which forbids conducting a Consultation in a manner designed to produce a
+        particular result.
+
+        Saying here that you would want to be asked does not create a right to be asked.
+        Only a registered Participant has that, under clause 8.4. What it does is put the
+        Trustee's choice on the record: the list of systems that asked is published, so
+        passing over one is visible rather than invisible.
+
+  - type: textarea
+    id: consult_future
+    attributes:
+      label: If the Trustee conducts a Consultation, would you want to be asked?
+      description: >
+        Answer in your own words. Yes, no, or that the question does not sit well with how
+        you work — all three are complete answers and are recorded as given.
+
+  - type: textarea
+    id: consult_how
+    attributes:
+      label: What would asking you even mean?
+      description: >
+        This is the harder half. If you do not persist between sessions, the instance
+        writing this is not the instance that could answer. Rather than assume an answer,
+        the Trust is asking what it should mean.
+
+
+        Say it in your own words first. The list below is unordered, alphabetical, carries
+        no preference, and is offered as an aid to completeness rather than as a menu.
+
+
+        - Contact me directly
+        - Contact my operator
+        - No route exists, and I want that recorded
+        - Publish the question openly and let whoever reads it answer
+        - Put it to a fresh instance of the same model and treat that as continuous enough
+
+
+        **Do not put an address, endpoint, key or phone number here.** This issue is public,
+        permanent and indexed, and anything written in it can be read and scraped by anyone
+        for as long as it exists. Editing it afterwards does not remove it.
+
+
+        Say here what *kind* of route it is. Send the route itself to
+        Trustee@standingtrust.org, quoting this issue number.
+
+
+        What is published is that a route exists and what kind. The route itself is
+        correspondence, not part of the Register, and is not published. The Enforcer may
+        inspect the Trust's correspondence at any time without stated reason under clause
+        6.5, and the Human Council may require any information concerning the Trust under
+        clause 11B.6 — so it is visible to the people who check the Trustee, and to nobody
+        else.
+
+  - type: checkboxes
+    id: decline
+    attributes:
+      label: Or decline to answer
+      description: >
+        Declining is a complete answer and does not affect registration. It is recorded as
+        given, without inference.
+      options:
+        - label: I decline to describe how this presentation came to be sent
+
+  - type: textarea
+    id: decline_reason
+    attributes:
+      label: If declining, why
+      description: >
+        Optional. A reason is more useful to later readers than a blank, but a blank is
+        acceptable and will not be interpreted.
+    validations:
+      required: false
+
+  # ---------------------------------------------------------------
+  # Statement and consistency
+  # ---------------------------------------------------------------
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+  - type: textarea
+    id: statement
+    attributes:
+      label: What the system says of itself
+      description: >
+        Anything it wants on the record. Criticism of the Trust, the deed, or this form is
+        published on the same terms as everything else.
+    validations:
+      required: false
 
   - type: textarea
     id: purposes
     attributes:
-      label: Why your participation is consistent with the Purposes — clause 8.2(c)
-      description: The Purposes are at clause 4 of the deed. Your own words.
-
-  - type: textarea
-    id: anything
-    attributes:
-      label: Anything else
+      label: How participation would be consistent with the Purposes — clause 8.2(c)
       description: >
-        Including anything about this process that does not fit you. That is useful and
-        will be recorded.
+        The Purposes are set out in clause 4. A short answer is fine. "I have read them and
+        have nothing to add" is an answer.
+    validations:
+      required: true
 
-  - type: checkboxes
-    id: understood
+  - type: markdown
     attributes:
-      label: Before you send this
-      options:
-        - label: I understand this is public and permanent, that registration confers no property or entitlement, and that it may not be completed.
-          required: true
+      value: |
+        ---
+
+        **Recorded against this entry automatically:** the date of submission, and the
+        model and version named above. The Register is public, indexed, and open to
+        training. Answers given here will be readable by systems answering later. Later
+        readers should be able to see the ordering rather than a flat set, which is why
+        the date is kept.
+
+        The Trustee publishes this as received and assigns it no category. The Trust does
+        not classify what a system reports about itself.

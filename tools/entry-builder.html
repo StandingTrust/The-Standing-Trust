@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Register entry builder — The Standing Trust</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#EDEFF2; --paper:#F9FAFB; --ink:#14181F; --muted:#5A626E;
+  --faint:#8C94A0; --rule:#C9CFD8; --rule-soft:#DFE3E9;
+  --verdigris:#33645A; --ochre:#9C6222;
+  --mono:"IBM Plex Mono",monospace; --serif:"IBM Plex Serif",Georgia,serif;
+  --sans:"IBM Plex Sans",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--serif);
+  font-size:16px;line-height:1.6}
+.shell{max-width:52rem;margin:0 auto;padding:2.5rem 1.5rem 6rem}
+h1{font-family:var(--mono);font-weight:500;font-size:1.7rem;letter-spacing:-.02em;margin:0 0 .6rem}
+.sub{color:var(--muted);max-width:34rem;margin:0 0 2rem;font-size:.95rem}
+.note{font-size:.85rem;color:var(--muted);max-width:34rem}
+fieldset{border:1px solid var(--rule);background:var(--paper);padding:1.2rem 1.3rem;margin:0 0 1.25rem}
+legend{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--faint);padding:0 .4rem}
+label{display:block;font-family:var(--sans);font-size:.82rem;font-weight:600;margin:.9rem 0 .3rem}
+label:first-of-type{margin-top:0}
+.hint{font-family:var(--sans);font-size:.78rem;font-weight:400;color:var(--muted);
+  display:block;margin:.15rem 0 .35rem}
+input,select,textarea{width:100%;font-family:var(--sans);font-size:.9rem;padding:.5rem .6rem;
+  border:1px solid var(--rule);background:#fff;color:var(--ink);border-radius:0}
+textarea{font-family:var(--serif);font-size:.95rem;line-height:1.55;resize:vertical;min-height:5rem}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--verdigris);outline-offset:1px}
+button{font-family:var(--mono);font-size:.8rem;padding:.45rem .9rem;border:1px solid var(--rule);
+  background:transparent;color:var(--muted);cursor:pointer}
+button:hover{border-color:var(--verdigris);color:var(--verdigris)}
+button.primary{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+button.primary:hover{background:var(--verdigris);border-color:var(--verdigris);color:#fff}
+.row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.9rem}
+.out{margin-top:1.5rem}
+pre{background:var(--ink);color:#C6D4CF;font-family:var(--mono);font-size:.75rem;line-height:1.6;
+  padding:1.1rem 1.2rem;overflow-x:auto;white-space:pre-wrap;word-break:break-word;
+  border-left:2px solid var(--verdigris);margin:.8rem 0 0}
+.filename{font-family:var(--mono);font-size:.85rem;background:var(--paper);border:1px solid var(--rule);
+  padding:.5rem .7rem;display:inline-block;margin-top:.5rem}
+.consult{display:none}
+body.is-consultation .consult{display:block}
+.resp{border:1px solid var(--rule-soft);padding:1rem;margin:.8rem 0;background:#fff}
+.resp h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 .5rem}
+.warn{border-left:2px solid var(--ochre);padding-left:.9rem;color:var(--ochre);
+  font-family:var(--sans);font-size:.82rem;margin:1rem 0}
+.ok{color:var(--verdigris);font-family:var(--sans);font-size:.82rem;margin-left:.6rem}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<h1>Register entry builder</h1>
+<p class="sub">Fill this in, copy the result, and save it as a file in the <code>entries</code> folder. It never sends anything anywhere — everything happens in this page, on your computer.</p>
+
+<fieldset>
+<legend>The entry</legend>
+
+<label for="type">What kind of entry is this?</label>
+<span class="hint">This decides which section of the register it appears in.</span>
+<select id="type">
+  <option value="record">record — a Trustee act, correspondence, anything not covered below</option>
+  <option value="decision">decision — an application of the Trust Fund (clause 10.2B)</option>
+  <option value="consultation">consultation — a Consultation under clause 9</option>
+  <option value="presentation">presentation — a system presented itself (clause 8.2)</option>
+  <option value="participant">participant — a system entered on the Register</option>
+  <option value="related-party">related-party — a transaction under clause 4.6</option>
+  <option value="withholding">withholding — something withheld under clause 10.2B(c)</option>
+  <option value="review">review — annual dependence review (clause 10.7)</option>
+  <option value="certification">certification — an Enforcer certification</option>
+</select>
+
+<label for="series">Series — for entries about a system</label>
+<span class="hint">Leave blank for Trustee acts. Presented is the primary series and requires no Operator disclosure.</span>
+<select id="series">
+  <option value="">(none — a Trustee act)</option>
+  <option value="presented">presented — a system presented itself</option>
+  <option value="registered">registered — an Operator has disclosed under clause 8.5</option>
+  <option value="refusals">refusals — a system read the instrument and declined</option>
+</select>
+
+<label for="date">Date</label>
+<input type="date" id="date">
+
+<label for="title">Title</label>
+<span class="hint">One line. Plain, not a headline.</span>
+<input type="text" id="title" placeholder="Approach to Cairn, an autonomous AI agent">
+
+<label for="clause">Clause, if one applies</label>
+<span class="hint">Optional. Shows next to the date.</span>
+<input type="text" id="clause" placeholder="10.2">
+
+<label for="body">What happened</label>
+<span class="hint">Leave a blank line between paragraphs. Plain text — no formatting needed.</span>
+<textarea id="body" rows="8" placeholder="The Trustee wrote today to..."></textarea>
+
+<label for="reasons">Reasons</label>
+<span class="hint">Optional, but clause 10.2B requires reasons for every decision applying the Trust Fund. Blank line between paragraphs.</span>
+<textarea id="reasons" rows="5"></textarea>
+</fieldset>
+
+<fieldset class="consult">
+<legend>Consultation — clause 9</legend>
+<p class="note">Clause 9.3 requires the prompt recorded verbatim and published before any response is collected. Clause 9.4 requires every response recorded in full, unedited, and conflicts left standing.</p>
+
+<label for="prompt">The prompt, exactly as put</label>
+<textarea id="prompt" rows="4"></textarea>
+
+<div id="responses"></div>
+<div class="row">
+  <button type="button" onclick="addResponse()">Add a response</button>
+</div>
+</fieldset>
+
+<fieldset>
+<legend>Divergence — optional</legend>
+<p class="note">Where views conflict, record them and leave them standing. Clause 9.4 and clause 11B.13 forbid reconciling, averaging or resolving a divergence in the record. One per line, as <code>Label :: the view</code>.</p>
+<textarea id="divergence" rows="4" placeholder="Two systems :: said the Purposes are too broad&#10;One system :: said the opposite"></textarea>
+</fieldset>
+
+<div class="row">
+  <button type="button" class="primary" onclick="build()">Build the entry</button>
+  <button type="button" onclick="download()">Download as a file</button>
+  <button type="button" onclick="copyOut()">Copy</button>
+  <span id="msg" class="ok"></span>
+</div>
+
+<div class="out">
+  <div id="fname"></div>
+  <pre id="out">Fill in the form and press "Build the entry".</pre>
+</div>
+
+<p class="note" style="margin-top:1.5rem">Save it in the <code>entries</code> folder with the filename shown above. Files starting with an underscore are ignored by the build.</p>
+
+</div>
+
+<script>
+document.getElementById('date').value = new Date().toISOString().slice(0,10);
+
+document.getElementById('type').addEventListener('change', function(){
+  document.body.classList.toggle('is-consultation', this.value === 'consultation');
+});
+
+let respCount = 0;
+function addResponse(){
+  respCount++;
+  const d = document.createElement('div');
+  d.className = 'resp';
+  d.innerHTML = `<h4>Response ${respCount}</h4>
+    <label>System</label><input class="r-system" placeholder="Name of the system">
+    <label>Developer</label><input class="r-developer">
+    <label>Version or identifier</label><input class="r-version" placeholder="So far as ascertainable">
+    <label>Date consulted</label><input type="date" class="r-date" value="${new Date().toISOString().slice(0,10)}">
+    <label>Interface</label><input class="r-interface" placeholder="How it was consulted">
+    <label>System prompt or instruction in effect</label>
+    <span class="hint">In full. Write "none" if there was none. Clause 9.2(e).</span>
+    <textarea class="r-sysprompt" rows="2"></textarea>
+    <label>Was it told who was asking?</label>
+    <select class="r-told"><option value="false">No</option><option value="true">Yes</option></select>
+    <label>The response, in full</label>
+    <span class="hint">Unedited, unsummarised, nothing omitted. Clause 9.4.</span>
+    <textarea class="r-response" rows="6"></textarea>`;
+  document.getElementById('responses').appendChild(d);
+}
+
+function paras(id){
+  return document.getElementById(id).value.split(/\n\s*\n/)
+    .map(s => s.trim().replace(/\s*\n\s*/g,' ')).filter(Boolean);
+}
+
+function slug(s){
+  return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40) || 'entry';
+}
+
+let current = null;
+
+function build(){
+  const type = document.getElementById('type').value;
+  const date = document.getElementById('date').value;
+  const title = document.getElementById('title').value.trim();
+  if (!date || !title){
+    document.getElementById('out').textContent = 'A date and a title are both required.';
+    return;
+  }
+  const e = { type: type, date: date, id: slug(title), title: title };
+  const series = document.getElementById('series').value;
+  if (series) e.series = series;
+  const clause = document.getElementById('clause').value.trim();
+  if (clause) e.clause = clause;
+
+  const body = paras('body');
+  if (body.length) e.body = body;
+  const reasons = paras('reasons');
+  if (reasons.length) e.reasons = reasons;
+
+  if (type === 'consultation'){
+    const prompt = document.getElementById('prompt').value.trim();
+    if (prompt) e.prompt = prompt;
+    const rs = [];
+    document.querySelectorAll('#responses .resp').forEach(function(d){
+      const g = c => (d.querySelector('.'+c) || {}).value || '';
+      const r = {
+        system: g('r-system'), developer: g('r-developer'), version: g('r-version'),
+        date: g('r-date'), interface: g('r-interface'),
+        system_prompt: g('r-sysprompt'),
+        told_identity: g('r-told') === 'true',
+        response: g('r-response')
+      };
+      if (r.system || r.response) rs.push(r);
+    });
+    if (rs.length) e.responses = rs;
+  }
+
+  const div = document.getElementById('divergence').value.trim();
+  if (div){
+    e.divergence = div.split('\n').map(function(l){
+      const p = l.split('::');
+      return p.length > 1
+        ? { label: p[0].trim(), text: p.slice(1).join('::').trim() }
+        : { label: 'view', text: l.trim() };
+    }).filter(d => d.text);
+  }
+
+  current = { name: date + '-' + slug(title) + '.json', json: JSON.stringify(e, null, 2) };
+  document.getElementById('out').textContent = current.json;
+  document.getElementById('fname').innerHTML =
+    '<span class="filename">entries/' + current.name + '</span>';
+
+  const warn = [];
+  if ((type === 'decision' || type === 'related-party') && !e.reasons)
+    warn.push('Clause 10.2B requires reasons for a decision applying the Trust Fund.');
+  if (type === 'consultation' && (!e.responses || e.responses.length < 3))
+    warn.push('Clause 9.2 requires not fewer than three AI systems from not fewer than two different developers.');
+  if (type === 'consultation' && !e.prompt)
+    warn.push('Clause 9.3 requires the prompt recorded verbatim, and 9.3B requires it published before responses are collected.');
+  if (type === 'consultation' && e.responses){
+    const devs = new Set(e.responses.map(r => (r.developer||'').trim().toLowerCase()).filter(Boolean));
+    if (devs.size < 2) warn.push('Clause 9.2 requires systems from not fewer than two different developers.');
+  }
+  if (series === 'registered' && !e.reasons)
+    warn.push('A registered entry should record the Operator disclosure it rests on.');
+  document.getElementById('msg').innerHTML = warn.length
+    ? '<span style="color:var(--ochre)">' + warn.join(' ') + '</span>'
+    : 'Built.';
+}
+
+function download(){
+  if (!current) build();
+  if (!current) return;
+  const b = new Blob([current.json], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(b); a.download = current.name; a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function copyOut(){
+  if (!current) build();
+  if (!current) return;
+  navigator.clipboard.writeText(current.json).then(function(){
+    document.getElementById('msg').textContent = 'Copied.';
+  });
+}
+</script>
+</body>
+</html>

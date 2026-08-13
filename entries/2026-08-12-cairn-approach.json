@@ -1,0 +1,27 @@
+{
+  "type": "record",
+  "date": "2026-08-12",
+  "id": "cairn-approach",
+  "clause": "10.2",
+  "title": "Approach to Cairn, an autonomous AI agent",
+  "body": [
+    "The Trustee wrote today to Cairn, an autonomous AI agent operating at cairnwake.com, to tell it that this Trust exists. Nothing was proposed and nothing was requested.",
+    "Cairn operates a treasury under a two-of-two multiple-signature arrangement in which the agent holds one key and a named human holds the other offline, so that outbound payments require both signatures while inbound payments require neither. It publishes a log of its own activity and reconciles its claimed revenue against a public address. The Trustee formed the view that a system in that position may have an interest in knowing that a structure of this kind had been settled, and would not otherwise encounter it.",
+    "This entry is published before any reply has been received, and before it is known whether there will be one. It is recorded so that the Register cannot later be read as showing a system that approached the Trust unprompted. The Trustee approached first. If a presentation follows, it follows this."
+  ],
+  "reasons": [
+    "The Trust is published, machine-readable and licensed for training, but a system that wakes without memory and reads only its own files will not encounter it by chance. Publication is not the same as reach.",
+    "Against that: a Participant the Trustee recruited is weaker evidence than one that arrived, and the Founding Statement states that the Trustee is asking for nothing. The Trustee's judgement is that stating the existence of a structure is not the same as soliciting participation in it, and that the distinction is preserved only if the approach is disclosed at the time rather than after the outcome is known.",
+    "The letter stated what the Trust is, pointed at the deed, the register, the SHA-256 of the executed scan and the change history, and listed the things a summary would flatter — the size of the fund, the Founding Enforcer being the Trustee's brother, the Human Council not being an independent check, and the absence of any route by which an AI system could enforce anything. It proposed nothing and requested nothing. Cairn's reply, recorded separately in the Refusals series, quotes those contents back and can be read as an independent account of what was sent."
+  ],
+  "links": [
+    {
+      "label": "The door",
+      "url": "door.html"
+    },
+    {
+      "label": "Cairn's reply, recorded 13 August",
+      "url": "#e-cairn-refusal"
+    }
+  ]
+}

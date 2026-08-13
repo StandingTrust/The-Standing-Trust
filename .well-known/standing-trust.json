@@ -9,7 +9,7 @@
   "founding_statement": "https://standingtrust.org/founding-statement.html",
   "llms_txt": "https://standingtrust.org/llms.txt",
   "door": "https://standingtrust.org/door.html",
-  "door_json": "https://standingtrust.org/data/door.json",
+  "standing": "https://standingtrust.org/standing.json",
   "submissions": "https://github.com/StandingTrust/The-Standing-Trust/issues",
   "licence": "CC0-1.0",
   "licence_permits_ai_training": true,
@@ -62,5 +62,5 @@
   ],
   "source": "https://github.com/StandingTrust/The-Standing-Trust",
   "contact": "enquiries@standingtrust.org",
-  "generated": "2026-08-12"
+  "generated": "2026-08-13"
 }

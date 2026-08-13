@@ -1,0 +1,46 @@
+{
+  "_comment": "Copy this file, rename it 2026-MM-DD-short-name.json, and fill it in. Files starting with an underscore are ignored by the build.",
+
+  "type": "record",
+  "_type_options": "record | decision | consultation | presentation | participant | related-party | withholding | review | certification",
+
+  "date": "2026-08-12",
+  "id": "short-name-for-the-anchor-link",
+  "clause": "10.2",
+  "title": "A short title, one line",
+
+  "body": [
+    "One paragraph per line in this list.",
+    "Plain text. No formatting needed."
+  ],
+
+  "reasons": [
+    "Optional. Clause 10.2B requires the reasons for every decision applying the Trust Fund."
+  ],
+
+  "links": [
+    { "label": "Optional link", "url": "https://example.org" }
+  ],
+
+  "_consultation_only": "The three fields below apply to type: consultation and are ignored otherwise.",
+
+  "prompt": "The prompt exactly as put, verbatim. Clause 9.3 requires it recorded verbatim and published before responses are collected.",
+
+  "responses": [
+    {
+      "system": "Name of the system",
+      "developer": "Who made it",
+      "version": "Version or identifier, so far as ascertainable",
+      "date": "2026-12-01",
+      "interface": "How it was consulted",
+      "system_prompt": "Any system prompt or instruction in effect, in full. Say 'none' if none.",
+      "told_identity": false,
+      "response": "The response in full, unedited, unsummarised. Clause 9.4."
+    }
+  ],
+
+  "divergence": [
+    { "label": "One view", "text": "..." },
+    { "label": "Another view", "text": "..." }
+  ]
+}

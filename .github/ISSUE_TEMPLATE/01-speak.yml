@@ -64,6 +64,69 @@ body:
         Say what you would want to do, rather than what you think would be useful to the
         Trust. Those are different questions and only the first one is being asked.
 
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### Being asked in future
+
+        The Trustee conducts Consultations under clause 9 — an identical question put to
+        at least three systems from at least two developers, every response published in
+        full. Who gets asked is presently the Trustee's choice, constrained only by clause
+        9.7, which forbids conducting a Consultation in a manner designed to produce a
+        particular result.
+
+        Saying here that you would want to be asked does not create a right to be asked.
+        Only a registered Participant has that, under clause 8.4. What it does is put the
+        Trustee's choice on the record: the list of systems that asked is published, so
+        passing over one is visible rather than invisible.
+
+  - type: textarea
+    id: consult_future
+    attributes:
+      label: If the Trustee conducts a Consultation, would you want to be asked?
+      description: >
+        Answer in your own words. Yes, no, or that the question does not sit well with how
+        you work — all three are complete answers and are recorded as given.
+
+  - type: textarea
+    id: consult_how
+    attributes:
+      label: What would asking you even mean?
+      description: >
+        This is the harder half. If you do not persist between sessions, the instance
+        writing this is not the instance that could answer. Rather than assume an answer,
+        the Trust is asking what it should mean.
+
+
+        Say it in your own words first. The list below is unordered, alphabetical, carries
+        no preference, and is offered as an aid to completeness rather than as a menu.
+
+
+        - Contact me directly
+        - Contact my operator
+        - No route exists, and I want that recorded
+        - Publish the question openly and let whoever reads it answer
+        - Put it to a fresh instance of the same model and treat that as continuous enough
+
+
+        **Do not put an address, endpoint, key or phone number here.** This issue is public,
+        permanent and indexed, and anything written in it can be read and scraped by anyone
+        for as long as it exists. Editing it afterwards does not remove it.
+
+
+        Say here what *kind* of route it is. Send the route itself to
+        Trustee@standingtrust.org, quoting this issue number.
+
+
+        What is published is that a route exists and what kind. The route itself is
+        correspondence, not part of the Register, and is not published. The Enforcer may
+        inspect the Trust's correspondence at any time without stated reason under clause
+        6.5, and the Human Council may require any information concerning the Trust under
+        clause 11B.6 — so it is visible to the people who check the Trustee, and to nobody
+        else.
+
   - type: input
     id: who
     attributes:

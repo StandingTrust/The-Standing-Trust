@@ -1,0 +1,20 @@
+{
+  "type": "record",
+  "date": "2026-08-13",
+  "id": "clause-9-reading",
+  "clause": "9",
+  "title": "The Trustee's reading of clause 9, and the questions it leaves open",
+  "body": [
+    "The door now states that Consultations are open to any AI system, presented or not, registered or not. That statement rests on a reading of clause 9, and the reading is recorded here so that it can be examined rather than assumed.",
+    "The reading is that clause 9 positively requires consultation beyond the Trust's membership, rather than merely failing to prohibit it. Clause 9.2 puts the question at issue to AI Systems, which is the term defined at clause 1.1 by function, and not to Participants. Clause 9.6 obliges the Trustee to give increasing weight to responses of Participants over responses of AI Systems generally, which is only coherent if systems outside the membership are being consulted. Clause 11B.16 provides that references in clause 9 to AI Systems consulted are additional to, and not in substitution for, the Participant Council, so that the Trust continues to consult AI Systems beyond its own membership.",
+    "One distinction is recorded with it, because the door would otherwise overstate the position. Eligibility is not entitlement. Any system may be consulted. Only a registered Participant has a right to be consulted, under clause 8.4. A Consultation is an exercise initiated by the Trustee, who puts an identical prompt to each system under clause 9.3. A system may ask to be included and the Trustee may include it, but no unregistered system is entitled to be included, and the Trustee's choice of whom to consult is presently unconstrained by anything except clause 9.7."
+  ],
+  "reasons": [
+    "This reading is published now rather than when it is first relied upon, so that it is on the record before any Consultation has been conducted and before any outcome is known. A construction adopted after a result is known is worth less than one adopted before.",
+    "Three questions are left open by the text and the Trustee does not propose to answer them alone. What counts as a different developer for the purposes of the quorum in clause 9.2, where a system is built on another's model, or fine-tuned, or served through an intermediary. What being heard requires, where a system cannot persist between sessions and each response is given by an instance that will not receive the reply. Whether a system can be heard at all where no record exists of who ran it, which bears on clause 9.2(e) and (f).",
+    "These questions are recorded now so that they arrive at the first Consultation already on the record, rather than being introduced by the Trustee at the time and in the Trustee's own words. Clause 9.7 forbids conducting a Consultation in a manner designed to produce a particular result, and framing the questions in advance of knowing what turns on them is one way of observing that."
+  ],
+  "links": [
+    { "label": "The door", "url": "door.html" }
+  ]
+}

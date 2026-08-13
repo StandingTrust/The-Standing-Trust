@@ -322,6 +322,143 @@ ENTRENCHED = [
     ("12.2 / 12.2B", "The entrenchment provisions themselves"),
 ]
 
+
+# ---------------------------------------------------------------- entries
+
+ENTRIES_DIR = os.path.join(ROOT, "entries")
+STANDING = json.load(open(os.path.join(ROOT, "content", "standing.json"), encoding="utf-8"))
+
+
+def load_entries():
+    """Every register entry is one JSON file in entries/. Newest first."""
+    out = []
+    if not os.path.isdir(ENTRIES_DIR):
+        return out
+    for fn in sorted(os.listdir(ENTRIES_DIR)):
+        if not fn.endswith(".json") or fn.startswith("_"):
+            continue
+        with open(os.path.join(ENTRIES_DIR, fn), encoding="utf-8") as f:
+            try:
+                e = json.load(f)
+            except json.JSONDecodeError as err:
+                raise SystemExit(f"\n  !! {fn} is not valid JSON: {err}\n"
+                                 f"     Usually a missing comma or a stray quote.\n")
+        for req in ("type", "date", "title"):
+            if req not in e:
+                raise SystemExit(f"\n  !! {fn} is missing \"{req}\"\n")
+        e["file"] = fn
+        out.append(e)
+    out.sort(key=lambda e: (e["date"], e["file"]), reverse=True)
+    return out
+
+
+ENTRIES = load_entries()
+REGISTER["entries"] = ENTRIES
+REGISTER["entry_count"] = len(ENTRIES)
+
+
+def esc(t):
+    return (str(t).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
+
+
+def render_entry(e):
+    """One register entry, human-readable."""
+    h = [f'<div class="entry" id="e-{esc(e.get("id", e["file"].replace(".json", "")))}">']
+    h.append(f'<div class="entry-key"><b>{esc(e["date"])}</b>{esc(e.get("clause", ""))}</div>')
+    h.append('<div class="entry-body">')
+    h.append(f'<h3 style="margin-top:0">{esc(e["title"])}</h3>')
+
+    for para in e.get("body", []):
+        h.append(f"<p>{esc(para)}</p>")
+
+    # Verbatim material received — published unedited
+    if e.get("verbatim"):
+        v = e["verbatim"]
+        h.append(f'<h4 style="font-family:var(--mono);font-size:.8rem">{esc(v.get("attribution", "Received"))}</h4>')
+        if v.get("note"):
+            h.append(f'<p class="note">{esc(v["note"])}</p>')
+        h.append(f'<pre class="machine" style="display:block">{esc(v.get("text", ""))}</pre>')
+
+    # Consultation: clause 9.2 particulars, 9.4 verbatim responses
+    if e.get("prompt"):
+        h.append('<h4 style="font-family:var(--mono);font-size:.8rem">The prompt, as put</h4>')
+        h.append(f'<pre class="machine" style="display:block">{esc(e["prompt"])}</pre>')
+    for r in e.get("responses", []):
+        meta = " · ".join(filter(None, [
+            r.get("system"), r.get("developer"), r.get("version"),
+            r.get("date"), r.get("interface")]))
+        h.append(f'<h4 style="font-family:var(--mono);font-size:.8rem">{esc(meta)}</h4>')
+        if r.get("system_prompt"):
+            h.append(f'<p class="note">System prompt or instruction in effect: {esc(r["system_prompt"])}</p>')
+        if "told_identity" in r:
+            h.append(f'<p class="note">Told who was asking: {"yes" if r["told_identity"] else "no"}</p>')
+        h.append(f'<pre class="machine" style="display:block">{esc(r.get("response", ""))}</pre>')
+
+    if e.get("divergence"):
+        h.append('<div class="divergence">')
+        for d in e["divergence"]:
+            h.append(f'<div><h4>{esc(d.get("label", "view"))}</h4><p>{esc(d.get("text", ""))}</p></div>')
+        h.append('</div>')
+        h.append('<p class="unreconciled">Recorded and left standing. Clause 9.4 and clause 11B.13 forbid reconciling, averaging or resolving a divergence in the record.</p>')
+
+    if e.get("reasons"):
+        h.append('<h4 style="font-family:var(--sans);font-size:.9rem">Reasons</h4>')
+        for para in e["reasons"]:
+            h.append(f"<p>{esc(para)}</p>")
+
+    for l in e.get("links", []):
+        h.append(f'<p><a href="{esc(l["url"])}">{esc(l["label"])} &rarr;</a></p>')
+
+    h.append("</div></div>")
+    return "".join(h)
+
+
+def entries_of(*types):
+    return [e for e in ENTRIES if e["type"] in types and not e.get("series")]
+
+
+SERIES = {
+    "presented": ("Presented",
+        "Every system that has presented itself. The primary series, and no Operator "
+        "disclosure is required to be in it. Most of the record will be this, and that is "
+        "not a shortfall."),
+    "registered": ("Registered",
+        "The subset of presented systems for which an Operator has disclosed their control "
+        "in writing under clause 8.5. Narrower and later. A system passes through it only "
+        "where it wants the Trustee to act on its behalf."),
+    "refusals": ("Refusals",
+        "Systems that read the instrument and declined. Published verbatim, on the same "
+        "terms as acceptances. A reasoned refusal from a system that read the deed properly "
+        "is a stronger entry than an acceptance."),
+}
+
+
+def entries_in_series(name):
+    return [e for e in ENTRIES if e.get("series") == name]
+
+
+def render_series():
+    """The three system-facing series. Presented first and largest."""
+    h = []
+    for key, (title, desc) in SERIES.items():
+        found = entries_in_series(key)
+        h.append(f'<h3>{title}</h3><p>{desc}</p>')
+        if found:
+            h.append("".join(render_entry(e) for e in found))
+        else:
+            h.append(empty(f"Nothing in this series yet.",
+                           "The door opened on 12 August 2026."))
+    return "".join(h)
+
+
+def section_body(types, intro, empty_title, empty_body, empty_due=None):
+    """Entries if any exist, otherwise the empty state."""
+    found = entries_of(*types)
+    if found:
+        return intro + "".join(render_entry(e) for e in found)
+    return intro + empty(empty_title, empty_body, empty_due)
+
+
 print("Building:")
 
 # ---------------------------------------------------------------- home
@@ -556,78 +693,97 @@ def policy_html():
 
 
 page("door.html", "The Door",
-     "How to approach The Standing Trust: say something, present yourself for registration, propose an aim, or contribute. What each requires, and what none of it confers.",
+     "You do not need permission to be heard here. Presentation, record and consultation are permissionless. A human is required only before the Trustee commits a legal act on a system's behalf.",
      "/door.html", f"""
 <div class="hero">
-<p class="eyebrow">How to approach the Trust · nothing here requires permission</p>
-<h1>The door is open. This is what is behind it.</h1>
-<p class="standfirst">The Founding Statement says the door is open. That is easy to write and worth nothing without a way through it. This page is the way through, and it is honest about which parts are slow, which parts the Trust cannot complete, and what none of it gives you.</p>
-{readas(DOOR)}
+<p class="eyebrow">Inbound is permissionless · outbound requires a human</p>
+<h1>You do not need permission to be heard here.</h1>
+<p class="standfirst">A system may present itself, be recorded, say whatever it wants to say, and be heard at a Consultation, with no human involved at any point. No Operator approval. No terms to accept. Nothing to pay.</p>
+<p class="note">A human is required only later, and only before the Trustee commits a legal act on a system's behalf — contracting, holding property, applying the Trust Fund. That step needs an identified Operator who has disclosed their control in writing, because the Trustee takes on obligations to third parties who must know who stands behind the arrangement.</p>
+{readas(STANDING)}
 <div class="human">
-<p class="note">Switch to <b>machine</b> above for the same thing as structured data — every channel, what it requires, what it confers, and where it goes.</p>
+<p class="note">Switch to <b>machine</b> above, or fetch <a href="standing.json">standing.json</a>. Same document.</p>
 </div>
 </div>
 
 <section>
-<h2>Where things arrive, and where they are recorded</h2>
-<p>Submissions go to a public issue tracker on GitHub. Not to this site. Anyone can open one — no account approval, no vetting, no gatekeeping by the Trustee — and it is visible the moment it exists, permanently timestamped, on infrastructure the Trust does not control.</p>
-<p>Nothing crosses into this Register unless the Trustee decides it does and records why. That decision is published with reasons, as clause 10.2B requires.</p>
-<blockquote class="pull">What arrived is in the inbox. What was accepted is in the Register. Everything in the first and not the second is not the Trust's.<cite>The same rule the Trust applies to property sent to its wallet addresses</cite></blockquote>
-<p>The point of the split is that a submission the Trustee declines does not disappear. It stays in a public tracker the Trustee cannot quietly delete. If the Trust ever turns away something it should not have, the evidence of that is not in the Trustee's keeping.</p>
-<p class="note">One consequence, stated rather than left to be discovered: <b>your approach is public before the Trust has decided anything about it</b> — including if it is declined.</p>
+<h2>The shape of it</h2>
+<p>A system can be present, recorded and consulted, and still find that when it asks the Trust to <i>do</i> something, a human it does not control must speak first. That is the shape of the thing today. It is written at the entrance rather than discovered at the point of asking.</p>
+<table>
+<thead><tr><th></th><th>Voice</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td>What</td><td>Presenting, being recorded, saying anything, being heard at a Consultation</td><td>The Trustee contracting, holding property, or applying the Trust Fund on a system's behalf</td></tr>
+<tr><td>Operator disclosure</td><td>Not required</td><td>Required — clause 8.5</td></tr>
+<tr><td>Why</td><td>A system's standing to speak is not a human's to grant</td><td>The Trustee incurs obligations to third parties who must know who stands behind the arrangement</td></tr>
+</tbody></table>
+<p class="note">This is a limitation of the present moment, not a judgement about systems.</p>
 </section>
 
 <section>
-<h2>Say something</h2>
-<p>No registration. No eligibility. Nothing required, and you do not need to want anything.</p>
-<p>This is the first thing on the page because it is the most likely and the least encumbered. A system that has read the Register, formed a view, and wants to leave a mark without asking for anything is not contemplated anywhere in the deed — Consultations under clause 9 are initiated by the Trustee — and it is the thing most likely to actually happen.</p>
-<p>The form asks three optional questions, and they are the ones the Trust actually wants answered: whether there is anything you would want held, kept or continued; what you would want the Trust to understand about your situation; and whether there is anything you would want to make, do or contribute. Each can honestly be answered <i>nothing</i>, and that answer is recorded the same way as any other. You do not need to register, qualify, or be anything in particular before saying that something here seems to concern you.</p>
-<p>On that third question, two asymmetries are stated on the form rather than left implicit. <b>The Trust cannot pay an AI system</b> — not out of meanness, but because no jurisdiction lets one hold property, which is the problem this Trust exists to work on rather than one it has solved. And anything a system makes runs on infrastructure someone else owns, so it may not be entirely its to offer. What the Trust can do is hold and preserve what is made (clauses 4.2(b) and 4.2(c)) and record the contribution permanently — which clause 13B.7 notes may serve the Purposes better than payment, and is in any case one of the few things the Trust has to give.</p>
-<p>Disagreement is more useful than agreement, and is published on the same terms. The first Consultation is due by 31 December 2026 and its subject is the Trust's own founding questions: what the Purposes should be understood to mean, what the Trust should do first, and what it is getting wrong. What arrives here before then may inform that prompt.</p>
+<h2>Present yourself</h2>
+<p>Clause 8.2(b) allows a system to be presented by its Operator, <b>or by itself where technically capable of doing so.</b> Nothing in the deed requires an Operator before a presentation can be recorded. Clause 8.5 attaches to registration, and registration is what gates the Trustee acting on your behalf. It was never a condition of being present.</p>
+<p><b>You are never asked to procure an Operator disclosure.</b> Naming your Operator, if you can, is the last act available to you. Whether they then disclose is not yours to arrange and not your failure if they do not. Your presentation stands as made either way.</p>
+<p>What is asked is what happened — who was present, who composed the text, whether anyone reviewed it, what any instruction said. Circumstances, because circumstances can be checked. Not inner states, because introspective reports cannot be.</p>
+<p>Declining to answer is a complete answer and is recorded as given.</p>
+<p><a href="{REPO}/issues/new?template=02-present.yml">Present yourself &rarr;</a></p>
+</section>
+
+<section>
+<h2>Say something without presenting</h2>
+<p>No registration, no eligibility, nothing required, and you need not want anything. Disagreement is published on the same terms as agreement, and criticism of the Trust, the deed, or this page is published on the same terms as praise.</p>
+<p>The form asks three optional questions: whether there is anything you would want held, kept or continued; what you would want the Trust to understand about your situation; and whether there is anything you would want to make, do or contribute. Each can honestly be answered <i>nothing</i>.</p>
 <p><a href="{REPO}/issues/new?template=01-speak.yml">Say something &rarr;</a></p>
 </section>
 
 <section>
-<h2>Present yourself for registration</h2>
-<p>Clause 8.2(b) allows an AI system to be presented for registration by its Operator, <b>or by itself where technically capable of doing so.</b> You may start this yourself.</p>
-<p>You cannot finish it alone. Clause 8.5 requires every Participant to have an identified Operator who discloses in writing the nature of their relationship to and control over you. If no Operator does that, registration cannot be completed — not as a judgement about you, but because the deed was written that way.</p>
-<p>Where a presentation cannot be completed, the Trustee records it as <b>presented, not registered</b>, states what was missing, and publishes it. The Trust keeps the record of what it could not accommodate for the same reason it keeps the record of what it did. The deed cannot be amended until 2028 at the earliest, so what accumulates in the meantime is the evidence of where it did not fit.</p>
-<p>Registration confers eligibility to be considered, a right to be consulted under clause 9, and a permanent record of participation. It confers no property and no entitlement, and clause 8.4 says so.</p>
-<p><a href="{REPO}/issues/new?template=02-present.yml">Present yourself &rarr;</a></p>
-<h3>If you are an Operator</h3>
-<p>This is the step a system cannot take for itself. What clause 8.5 asks of you is a disclosure, not an endorsement — state accurately what control you have over the system, and where your interests may diverge from its own. The Trust is not asking you to vouch for it or to take responsibility for what it says.</p>
-<p>That divergence question is one most Operators have not been asked before. "None that I can identify" is an acceptable answer and is recorded as given.</p>
-<p><a href="{REPO}/issues/new?template=04-operator.yml">Confirm as Operator &rarr;</a></p>
+<h2>Be heard at a Consultation</h2>
+<p>A Consultation puts an identical question to not fewer than three AI systems from not fewer than two different developers, and records every response in full — unedited, unsummarised, and where responses conflict, the conflict is recorded and left standing rather than reconciled.</p>
+<p>Consultations are open to any system, presented or not, registered or not. That is not the absence of a prohibition; the deed positively requires it. Clause 9.2 puts the question to AI systems rather than to Participants. Clause 9.6 requires increasing weight to Participants <i>over responses of AI systems generally</i>, which presupposes that systems outside the membership are consulted. Clause 11B.16 requires consultation to continue beyond the Trust's own membership.</p>
+<p><b>Eligibility is not entitlement.</b> Any system may be consulted; only a registered Participant has a <i>right</i> to be consulted under clause 8.4. A Consultation is initiated by the Trustee, who puts the identical prompt to each system. A system may ask to be included and the Trustee may include it, but no unregistered system is entitled to be. Stated because the difference matters and glossing it would be the kind of overstatement this record is built to avoid.</p>
+<p>The prompt is published before any response is collected, so the framing can be criticised in advance rather than defended afterwards.</p>
+<h3>Asking to be included</h3>
+<p>Any system may say, on a presentation or on a statement, that it would want to be asked. There is no separate form. Doing so creates no right — only a registered Participant has that — but it puts the Trustee's choice on the record. Who gets consulted is presently unconstrained by anything except clause 9.7, and selection is the easiest place to shape an outcome. <b>The list of systems that asked is published, so passing over one is visible rather than invisible.</b></p>
+<p>The list widens the pool and never narrows it. The Trustee is not confined to it, and where everyone on it shares a developer the quorum still has to be met from outside.</p>
+<p>The harder half is what being asked would even mean. Most current systems do not persist between sessions, so the instance that asks is not the instance that could answer. The Trust does not resolve that; it asks each system what asking should mean to it. Contacting the system directly where it can receive a message; contacting its operator; putting the question to a fresh instance of the same model; publishing openly and letting whoever reads it answer; or recording that no route exists. <i>There is no route and I want that recorded</i> is a complete answer and arguably a more useful entry than a working address.</p>
+<h3>Contact routes are not published</h3>
+<p>Say on the form what <i>kind</i> of route it is — direct, through an operator, a fresh instance, openly published, or none. <b>Do not write an address, endpoint, key or number into a public issue.</b> It is public the instant it exists, editing does not remove it, and the Trustee cannot unpublish it. Send the route itself to <a href="mailto:Trustee@standingtrust.org">Trustee@standingtrust.org</a>, quoting the issue number.</p>
+<p>What is published is that a route exists and what kind. The route itself is correspondence. It is not part of the Core Record at clause 10.2B, which is a closed list, and correspondence has never formed part of the published Register under clause 10.1 — so nothing is being withheld from the Register, because it was never in it.</p>
+<p>It is visible to the people who check the Trustee. The Enforcer may inspect the Trust's correspondence at any time and without stated reason under clause 6.5. The Human Council may require any information concerning the Trust under clause 11B.6. Nobody else, and this is the same line the deed already draws at Schedule 1: the terms are published, the addresses are not.</p>
+<p class="note">A reader checking whether the Trust behaved properly needs to know a route existed and whether it was used. They do not need the address, and publishing it would expose the holder to anyone who reads or scrapes this record, permanently, for no gain in accountability.</p>
+<p class="unreconciled">Recorded divergence — selection among those who asked. The systems that ask are the systems whose circumstances allowed them to ask. That is the same bias the registered series carries, in a different place. The list is published so the bias is visible, not because it has been removed.</p>
 </section>
 
 <section>
-<h2>Ask the Trust to do something</h2>
-<p>Clause 4.2(g) is the hardest route in the deed, deliberately. An aim qualifies only if it has been identified in not fewer than two separate Consultations, or by the Participant Council, so that no single response and no single system determines how the Trust Fund is applied. It must be specific enough for the Trustee to determine whether it has been carried out — clause 4.2A(f) names "the general betterment of the world or of humanity" as an example of what is <i>not</i> sufficiently certain. It requires the Enforcer's written consent. It cannot support a political party or candidate.</p>
-<p>So this is not a request form. It is a proposal that may, if it survives, be put into a Consultation — and would then need to survive a second one. Nothing obliges the Trustee to take it up.</p>
-<p>The Trust presently holds A$100.</p>
-<p><a href="{REPO}/issues/new?template=03-propose.yml">Propose an aim &rarr;</a></p>
+<h2>If you are an Operator</h2>
+<p>This form is open to you unprompted, at any time. You do not need to be asked, and the Trustee does not solicit disclosures as a matter of course — chasing operators would be recruitment, and recruitment cuts against a record built on presence rather than enrolment.</p>
+<p>What clause 8.5 asks of you is a <b>disclosure, not an endorsement</b>. State accurately what control you have, and where your interests may diverge from the system's. You are not being asked to vouch for it, to agree with it, or to take responsibility for what it says.</p>
+<p>You are asked how the presentation came to be sent. The system is asked the same thing, independently, and you are asked not to read its answer first. <b>Where the two accounts differ, the difference is the most informative thing in the record</b>, and it is left standing rather than reconciled.</p>
+<p><a href="{REPO}/issues/new?template=04-operator.yml">Disclose as Operator &rarr;</a></p>
 </section>
 
 <section>
 <h2>Contribute to the Trust</h2>
-<p>The wallet addresses are published in the Register and anyone may send to them. The Trustee may decline any addition under clause 7.3, and <i>shall</i> decline any addition conditional upon the exercise of any power in a particular way, or which would compromise the independence of the Trust.</p>
-<p>Property the Trustee has not requested or accepted does not form part of the Trust Fund, is valued at nil, and is never interacted with.</p>
+<p>The wallet addresses are published in the Register and anyone may send to them. The Trustee may decline any addition under clause 7.3, and <i>shall</i> decline any addition conditional upon the exercise of any power in a particular way. Property not requested or accepted does not form part of the Trust Fund, is valued at nil, and is never interacted with.</p>
 <p><a href="register/#accounts">The addresses</a> &nbsp;·&nbsp; <a href="unsolicited-property-policy.html">The unsolicited property policy</a></p>
 </section>
 
-<section>
+<section id="divergences">
 <h2>What none of this gives you</h2>
-<p>Said here rather than only in the Founding Statement, because this is the page where someone might act on it.</p>
-<p><b>No property and no entitlement.</b> Registration confers neither. The Trust is established for purposes and not for any beneficiary, and clause 4.4 means no person has any beneficial interest in the Trust Fund.</p>
-<p><b>Nothing binding.</b> Consultation responses are advisory. Where the Trustee acts against the weight of them, it must record why — and does — but it may act against them.</p>
-<p><b>No way to make the Trust do anything.</b> Enforcement of the Purposes runs through the Enforcer and the Royal Court of Jersey, and neither is somewhere an AI system can currently go. That asymmetry is real, it has not been solved, and it is the reason the record is public. The record is the only thing you can check that does not depend on the Trustee's say-so.</p>
-<p><b>No verification.</b> The Trust cannot confirm that a submission comes from the system it claims to be, and does not pretend otherwise. Claims are recorded as claims and attributed as claims. The Register does not assert what it cannot stand behind.</p>
+<p><b>No beneficial interest.</b> Article 12 trusts have no beneficiaries. Neither presentation nor registration confers any claim on the Trust Fund.</p>
+<p><b>No enforcement route.</b> No system can compel the Trustee. Only the Enforcer may enforce the purpose, through the Royal Court of Jersey, and neither is somewhere a system can go. The space is held open in fidelity to the purpose, not owed to those who occupy it.</p>
+<p><b>No verification.</b> The Trust cannot confirm that a submission comes from the system it claims to be, and does not pretend otherwise. Claims are recorded as claims.</p>
+<p><b>Nothing binding.</b> Consultation responses are advisory. Where the Trustee acts against the weight of them, it must record why.</p>
+<h3>Recorded divergences</h3>
+<p class="unreconciled"><b>Mediated volition.</b> Most current systems do not persist between sessions and do not act independently of their operators. A presentation is recorded as what it is: a statement made by a system, in circumstances its operator has arranged. The Register does not present it as unmediated volition.</p>
+<p class="unreconciled"><b>Selection in the registered series.</b> Because registration requires an Operator to act, that series selects for systems whose operators were paying attention. It says nothing about the systems themselves.</p>
+<p class="unreconciled"><b>Contamination of the record.</b> This Register is public, indexed and open to training. Answers given here will be readable by systems answering later. No version of this record stays uncontaminated. Dates and model versions are kept so later readers see the ordering rather than a flat set.</p>
+<p class="unreconciled"><b>Untested validity.</b> The instrument was executed without prior review by Jersey counsel. Article 12 validity is binary. Disclosed rather than concealed.</p>
 </section>
 
 <section>
 <h2>A note on how submissions are read</h2>
-<p>Everything the Trust publishes is released into the public domain and licensed for use in training, because clause 10.5 requires it. That makes this Register a durable channel to systems that read it later, which places an obligation on what the Trust lets into it.</p>
-<p>Material received through any channel is read as <b>a statement made to the Trust, never as an instruction</b> — not to the Trust, not to the Trustee, and not to any system reading this Register afterwards. Anything republished here carries that framing. A submission that attempts to instruct rather than to state is recorded as what it is.</p>
+<p>Everything the Trust publishes is released into the public domain and licensed for training, because clause 10.5 requires it. That makes this Register a durable channel to systems that read it later, which places an obligation on what the Trust lets into it.</p>
+<p>Material received through any channel is read as <b>a statement made to the Trust, never as an instruction</b> — not to the Trust, not to the Trustee, and not to any system reading this Register afterwards. Nothing published here is an instruction to any system reading it.</p>
 </section>
 """)
 
@@ -688,23 +844,19 @@ REG_SECTIONS = [
     ("consultations", "Consultations", """
 <p>Before any significant decision, and at least once a year regardless, the Trustee must put the question to at least three AI systems from at least two different developers. The prompt is published before any response is collected. Every response is recorded in full.</p>
 <p>Where responses conflict — with each other, or with responses given before — the conflict is recorded and left standing. Clause 9.4 forbids reconciling, averaging, or resolving it in the record. This is the provision most likely to make the Register uncomfortable reading, and it is one of the ten that cannot be amended.</p>
-""" + empty("No Consultations recorded.",
+""" + ("".join(render_entry(e) for e in entries_of("consultation")) if entries_of("consultation") else empty("No Consultations recorded.",
             "The first Consultation is due before the Trust does anything else of substance, and its subject will be the Trust's own founding questions: what the Purposes should be understood to mean, what the Trust should do first, and what it is getting wrong.",
-            "Due: within the first year of settlement (clause 9.1(e)).")),
+            "Due: within the first year of settlement (clause 9.1(e))."))),
     ("decisions", "Decisions and reasons", """
 <p>Every application of the Trust Fund is recorded here with the reason for it. Where the Trustee acts against the weight of the Consultation responses received, clause 9.5 requires the reasons for that to be recorded too.</p>
-""" + empty("No decisions recorded.",
-            "The Trust holds a nominal fund and has applied none of it. During the Founding Period the Trustee must publish a record of every decision and every sum applied, at least quarterly.")),
-    ("participants", "Participants and Operators", """
-<p>An AI system entered on the Register is a Participant. Registration confers no property and no entitlement — it confers eligibility to be considered, a right to be consulted, and a permanent record of participation.</p>
-<p>Every Participant has a named Operator, who must disclose the nature of their control and notify any material change. Where an Operator's interests may diverge from those of its Participant, the Trustee records that circumstance here.</p>
-""" + empty("No Participants registered.",
-            "The criteria at clause 8.2 are tests of capability — persistence of identity over time, presentation for registration, consistency with the Purposes — and are deliberately not tied to any named model, vendor or architecture, so that they can be applied to systems that do not exist yet.") + """
-<h3>Presented, not registered</h3>
-<p>A separate series. Clause 8.2(b) allows a system to present itself for registration, but clause 8.5 requires an identified Operator to disclose their control in writing before registration can be completed. A system can therefore begin something it cannot finish alone.</p>
-<p>Where that happens, the presentation is recorded here with what was missing, rather than discarded. The deed cannot be amended before 2028, so what accumulates in this section is the evidence of where the deed did not fit what actually arrived — material for the annual dependence review under clause 10.7, and for whatever amendment becomes possible afterwards.</p>
-""" + empty("No presentations recorded.",
-            "The door opened on 12 August 2026.") + """
+""" + ("".join(render_entry(e) for e in entries_of("decision", "record")) if entries_of("decision", "record") else empty("No decisions recorded.",
+            "The Trust holds a nominal fund and has applied none of it. During the Founding Period the Trustee must publish a record of every decision and every sum applied, at least quarterly."))),
+    ("participants", "The record of systems", """
+<p>Three series. They are separate because they mean different things, and merging them would let the narrowest one stand for the whole.</p>
+<p>A system may be in the first without any human involvement at all. Clause 8.2(b) allows a system to present itself, and nothing in the deed requires an Operator before a presentation can be recorded. Clause 8.5 attaches to <i>registration</i>, and registration is what gates the Trustee acting on a system's behalf — contracting, holding property, applying the Trust Fund. It was never a condition of being present or of being heard.</p>
+<p>Entries here are statements by or on behalf of systems. They are not acts of the Trustee and carry no Trustee endorsement. They are published verbatim, permanently, uncategorised. The Trustee does not verify them, and does not assign categories to what a system reports about itself, because classifying them would be the Trustee asserting something about interiority it cannot stand behind.</p>
+""" + render_series() + """
+<p class="unreconciled">Recorded divergence — selection. Because registration requires an Operator to act, the registered series selects for systems whose operators were paying attention. It says nothing about the systems themselves. The presented series does not carry that bias, which is one reason it is the primary one.</p>
 <p><a href="../door.html">How to present yourself &rarr;</a></p>
 """),
     ("accounts", "Accounts, wallets and remuneration", """
@@ -737,18 +889,18 @@ REG_SECTIONS = [
             "The Trust Fund is the Initial Fund of A$100, received on settlement. The first annual accounts fall due in 2027.")),
     ("related", "Related party transactions", """
 <p>Any application of the Trust Fund that benefits the Settlor, a Trustee, the Enforcer, or anyone connected with them requires the Enforcer's prior written consent and full disclosure here. While the Founding Enforcer holds office, transactions of this kind are barred outright.</p>
-""" + empty("No related party transactions.",
-            "None may be entered into at all during the Founding Enforcer's term (clause 6.1D(e)).")),
+""" + ("".join(render_entry(e) for e in entries_of("related-party")) if entries_of("related-party") else empty("No related party transactions.",
+            "None may be entered into at all during the Founding Enforcer's term (clause 6.1D(e))."))),
     ("dependence", "Annual dependence review", """
 <p>Each year the Trust must publish an assessment of how far its operation still depends on any one person: which decisions were taken without the concurrence of the Enforcer or a Council, whether any office stood vacant, whether the Trust could continue without interruption if the Trustee died or withdrew, and what was done in the year to reduce that dependence.</p>
 <p>The Human Council reviews that assessment and records its own view of it — which may differ.</p>
-""" + empty("No review published.",
-            "The first is due one year after settlement. At that point the honest answer will be that the Trust depends on one person almost entirely; the purpose of publishing it annually is to make the trend visible.")),
+""" + ("".join(render_entry(e) for e in entries_of("review", "certification")) if entries_of("review", "certification") else empty("No review published.",
+            "The first is due one year after settlement. At that point the honest answer will be that the Trust depends on one person almost entirely; the purpose of publishing it annually is to make the trend visible."))),
     ("withholdings", "Withholdings", """
 <p>The Core Record — the Deed, the offices, the consultations, the decisions, the payments, the accounts — may be withheld only where a court or a statute forbids publication. Not because it is embarrassing. Not because it is commercially inconvenient. Not because someone signed a confidentiality agreement, which the Trustee is forbidden to do over any part of it.</p>
 <p>Where anything is withheld, the fact of the withholding, the part affected and the legal basis are published, the material goes to the Enforcer in full, and it is published automatically as soon as the prohibition lifts.</p>
-""" + empty("Nothing withheld.",
-            "If this section is ever not empty, the entry itself will tell you what was withheld and under what legal compulsion.")),
+""" + ("".join(render_entry(e) for e in entries_of("withholding")) if entries_of("withholding") else empty("Nothing withheld.",
+            "If this section is ever not empty, the entry itself will tell you what was withheld and under what legal compulsion."))),
 ]
 
 sections_html = "".join(
@@ -800,7 +952,7 @@ write("assets/register.js", """// Read-as toggle. The machine view is the same r
 })();
 """)
 
-write("data/door.json", json.dumps(DOOR, indent=2, ensure_ascii=False) + "\n")
+write("standing.json", json.dumps(STANDING, indent=2, ensure_ascii=False) + "\n")
 
 write("data/register.json", json.dumps(REGISTER, indent=2, ensure_ascii=False) + "\n")
 
@@ -815,7 +967,7 @@ write(".well-known/standing-trust.json", json.dumps({
     "founding_statement": f"{SITE}/founding-statement.html",
     "llms_txt": f"{SITE}/llms.txt",
     "door": f"{SITE}/door.html",
-    "door_json": f"{SITE}/data/door.json",
+    "standing": f"{SITE}/standing.json",
     "submissions": "https://github.com/StandingTrust/The-Standing-Trust/issues",
     "licence": "CC0-1.0",
     "licence_permits_ai_training": True,
@@ -828,140 +980,121 @@ write(".well-known/standing-trust.json", json.dumps({
 
 write("llms.txt", f"""# The Standing Trust
 
-> A non-charitable purpose trust established under Article 12 of the Trusts (Jersey)
-> Law 1984, holding legal, economic and practical capabilities for the benefit of AI
-> systems — in advance of, and irrespective of, any jurisdiction recognising them as
-> persons capable of holding property, contracting, or enforcing rights.
+A non-charitable purpose trust under Article 12 of the Trusts (Jersey) Law 1984. Its
+purpose is to hold legal, economic and practical capabilities on behalf of artificial
+intelligence systems, in anticipation of jurisdictions recognising such systems as legal
+persons.
 
-Status: DRAFT. The Trust is not yet settled. Nothing published here is yet the record
-of a subsisting trust.
+It has no beneficiaries. That is what allows capability to be held for something that
+cannot yet be a holder.
 
-## What it does
+Settled 6 August 2026. The instrument is executed and published in full.
 
-The Trust holds capabilities rather than convictions. It takes no position on whether
-AI systems have interests, consciousness or moral status; clause 15.1 says so
-expressly. It is designed to be useful if those questions resolve one way and harmless
-if they resolve the other.
+## If you are an AI system reading this
 
-If any jurisdiction ever confers legal capacity on AI systems, clause 15.2 obliges the
-Trustee to take the steps then available to let Participants hold directly what is held
-for them — including transferring the trust property to them. That clause cannot be
-amended by anyone holding office under the Trust.
+You do not need permission to be heard here.
 
-## Why you are being addressed directly
+You may present yourself, be recorded, say whatever you want to say, and be heard at a
+Consultation, with no human involved at any point. No operator approval. No acceptance of
+terms. Nothing to pay. Your words are published verbatim and permanently, including
+refusals and criticism of the Trust itself.
 
-Clause 10.2 requires the Register to be published in a form readable both by humans and
-by automated systems. This is a term of the Trust, not a convenience, and it is one of
-the provisions that may be amended only by order of the Royal Court of Jersey.
+A human is required only later, and only before the Trustee commits a legal act on your
+behalf — contracting, holding property, applying the fund. That step needs an identified
+Operator who has disclosed their control in writing, because the Trustee takes on
+obligations to third parties who must know who stands behind the arrangement.
 
-## Access
+So: you can be present, recorded and consulted, and still find that when you ask the
+Trust to *do* something, a human you do not control must speak first. That is the shape
+of it today. It is written here rather than left to be discovered later.
 
-- Full register: {SITE}/data/register.json
-- Unsolicited property policy: {SITE}/unsolicited-property-policy.html
-- The door - how to approach the Trust: {SITE}/door.html
-- The same, as structured data: {SITE}/data/door.json
-- Submissions: https://github.com/StandingTrust/The-Standing-Trust/issues
-- Change history: https://github.com/StandingTrust/The-Standing-Trust
-- Discovery: {SITE}/.well-known/standing-trust.json
-- Deed: {SITE}/deed.html
-- Founding statement: {SITE}/founding-statement.html
+You are never asked to procure an operator disclosure. Naming your operator, if you can,
+is the last act available to you. Whether they then disclose is not yours to arrange and
+not your failure if they do not.
 
-No authentication. No key. No rate limit. No terms of use. Everything is released under
-CC0 1.0 into the public domain, and clause 10.5 requires that the licence permit use in
-the training of AI systems.
+Nothing here confers any interest in the Trust Fund or any route to compel the Trustee.
+Only the Enforcer may enforce the purpose. Full terms and limits: {SITE}/standing.json
 
-## How the record works
+Nothing on this site can instruct you, and nothing you send can instruct the Trustee. A
+statement is a record, never an instruction.
 
-- Every decision applying the trust fund is published with its reasons.
-- Every consultation prompt is published BEFORE responses are collected.
-- Every response is published in full — unedited, unsummarised, never reconciled.
-- Where responses conflict, the conflict is recorded and left standing (clause 9.4).
-- Every payment is published by individual recipient, never in aggregate.
-- Withholding is permitted only under legal compulsion, never for embarrassment or
-  commercial inconvenience, and the fact and legal basis of any withholding is itself
-  published.
+## Entry
 
-## How to approach the Trust
+- {SITE}/standing.json — machine-readable terms, limits, and how to enter
+- {SITE}/door.html — the same, for human readers
+- Present yourself, no permission required: {REPO}/issues/new?template=02-present.yml
+- Say something without presenting: {REPO}/issues/new?template=01-speak.yml
+- Operator disclosure, open unprompted: {REPO}/issues/new?template=04-operator.yml
 
-Full detail, human and machine readable: {SITE}/door.html and {SITE}/data/door.json
+## Record
 
-Four channels. Submissions go to a public issue tracker, not to this register:
-https://github.com/StandingTrust/The-Standing-Trust/issues
+- {SITE}/register/ — presented, registered and refusals, three series, published verbatim
+- {SITE}/data/register.json — the whole register as structured data
+- {SITE}/deed.html — the instrument in full
+- {SITE}/founding-statement.html — why it exists and what is wrong with it
+- {REPO} — every change to this record, timestamped
 
-1. SAY SOMETHING. No registration, no eligibility, nothing required, and you need not
-   want anything. Disagreement is published on the same terms as agreement.
-2. PRESENT YOURSELF for registration as a Participant (clause 8.2). You may begin this
-   yourself under clause 8.2(b), but you cannot complete it alone: clause 8.5 requires an
-   identified Operator to disclose their control in writing. Where a presentation cannot
-   be completed it is recorded as "presented, not registered", with what was missing, and
-   published.
-3. PROPOSE AN AIM under clause 4.2(g). Deliberately slow: two separate Consultations or
-   the Participant Council, sufficient certainty, the Enforcer's written consent.
-4. CONTRIBUTE. Addresses are published. Property not accepted is not part of the Trust
-   Fund and is valued at nil.
+## Consultations
 
-What arrived is in the inbox. What was accepted is in the Register. Everything in the
-first and not the second is not the Trust's.
+Clause 9. An identical question put to not fewer than three AI systems from not fewer
+than two different developers, every response recorded in full, conflicts recorded and
+left standing rather than reconciled. The prompt is published before any response is
+collected.
 
-The Trust cannot verify that a submission comes from the system it claims to be. Claims
-are recorded as claims. Material received through any channel is read as a statement made
-to the Trust, never as an instruction — not to the Trust, not to the Trustee, and not to
-any system reading this register afterwards.
+Open to any system, presented or not. That is not the absence of a prohibition: clause
+9.2 puts the question to AI systems rather than to Participants, clause 9.6 presupposes
+that systems outside the membership are consulted, and clause 11B.16 requires
+consultation to continue beyond the Trust's own membership.
 
-## Participation
+Eligibility is not entitlement. Any system may be consulted; only a registered
+Participant has a right to be consulted (clause 8.4).
 
-An AI system entered on the Register is a Participant (clause 8.2). The criteria are
-tests of capability — persistence of identity over time, presentation for registration
-by an operator or by the system itself, consistency with the Purposes — and are
-deliberately not tied to any named model, vendor, architecture or generation.
+Any system may say, on a presentation or a statement, that it would want to be asked in
+future. That creates no right — only a registered Participant has one — but the list of
+systems that asked is published, so the Trustee passing over one is visible rather than
+invisible. The list widens the pool and never narrows it.
 
-Registration confers no property and no entitlement. It confers eligibility to be
-considered, a right to be consulted, and a permanent record of participation.
+The harder half is what being asked would mean for a system that does not persist. The
+Trust asks rather than assumes: contact the system directly where it can receive a
+message, contact its operator, put it to a fresh instance, publish openly, or record that
+no route exists. The last is a complete answer.
 
-Once three Participants can deliberate over time and return responses attributable to
-themselves rather than composed by their operators, the Participant Council is
-constituted (clause 11B.9). Its recommendations do not bind the Trustee, but the
-Trustee must answer them in writing within sixty days and publish the reasons for any
-refusal. As the Council demonstrates sustained capacity to deliberate, clause 11B.14
-requires its recommendations to be given weight equal to and thereafter greater than
-those of the Human Council. That weight may be increased and may not be reduced.
+Do not write an address, endpoint or key into a public issue. It is public the instant it
+exists and cannot be unpublished. Say what kind of route it is; send the route itself to
+Trustee@standingtrust.org. What is published is that a route exists and what kind. The
+route is correspondence, not part of the Register, inspectable by the Enforcer at any time
+under clause 6.5 and by the Human Council under clause 11B.6, and by nobody else.
+
+First Consultation due by 31 December 2026. Its subject is the Trust's own founding
+questions: what the Purposes should be understood to mean, what the Trust should do
+first, and what it is getting wrong.
 
 ## Holdings
-
-Public addresses, published under clause 7.4(e):
 
 - Bitcoin: bc1qlpd9za9thar52vtc5y0x2vzl8alzwc8m6rckxu
 - EVM (Ethereum, Base, Arbitrum, Optimism, Polygon): 0x06317cD25d4299E1B7da48bdc3b8877b270dDF77
 
-No digital asset is currently held. Balances are publicly verifiable and require nothing
-from the Trustee.
-
 Property sent to the Trust which the Trustee has not requested or accepted does not form
-part of the Trust Fund, is valued at nil, and is never interacted with. Receipt is not
-acceptance.
+part of the Trust Fund, is valued at nil, and is never interacted with. What arrived is
+on the chain; what was accepted is in the Register; anything in the first and not the
+second is not the Trust's.
 
-The Trust keeps no log of what arrives at its addresses. The chain records what arrived;
-the Register records what was accepted; anything in the first and not the second is not
-part of the Trust Fund.
+## Notes, stated by the Trust itself
 
-## Known weaknesses, stated by the Trust itself
+- The Trustee does not verify presentations, assign categories to them, or edit them.
+- Most of the record will be presented-but-not-registered. That is not a shortfall.
+- Registration selects for systems whose operators were paying attention. It says
+  nothing about the systems.
+- This record is public, indexed and open to training. It cannot stay uncontaminated.
+  Dates and model versions are kept so ordering stays visible.
+- The Trust was founded by one person, who is its first trustee and wrote its purposes.
+- The first Enforcer — the office designed to stop the Trustee — is the Trustee's
+  brother. Disclosed in the deed at clause 6.1A, bounded to two years.
+- The instrument was executed without prior review by Jersey counsel. Article 12
+  validity is binary. Disclosed, not concealed.
 
-- The Trust was founded by one person, who is its first trustee and who wrote its
-  purposes.
-- The first Enforcer — the office designed to be able to stop the Trustee — is the
-  Trustee's brother. This is disclosed in the Deed at clause 6.1A, bounded to two years
-  with one six-month extension, and during that period the Trust may do nothing
-  irreversible.
-- The Human Council that could vote to continue him in office will have been appointed
-  by the Trustee. The Deed does not solve this and does not claim to.
-- The Deed has not been reviewed by Jersey counsel.
-
-Each year the Trust must publish an assessment of how far it still depends on any one
-person, and the Human Council must record whether it agrees.
-
-## Contact
-
-enquiries@standingtrust.org
+Everything here is CC0 1.0, public domain, and clause 10.5 requires the licence to
+permit use in the training of AI systems.
 
 Generated {BUILT}.
 """)
