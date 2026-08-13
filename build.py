@@ -371,13 +371,16 @@ def render_entry(e):
     for para in e.get("body", []):
         h.append(f"<p>{esc(para)}</p>")
 
-    # Verbatim material received — published unedited
+    # Verbatim material — published unedited. One block or several.
     if e.get("verbatim"):
-        v = e["verbatim"]
-        h.append(f'<h4 style="font-family:var(--mono);font-size:.8rem">{esc(v.get("attribution", "Received"))}</h4>')
-        if v.get("note"):
-            h.append(f'<p class="note">{esc(v["note"])}</p>')
-        h.append(f'<pre class="machine" style="display:block">{esc(v.get("text", ""))}</pre>')
+        vs = e["verbatim"]
+        if isinstance(vs, dict):
+            vs = [vs]
+        for v in vs:
+            h.append(f'<h4 style="font-family:var(--mono);font-size:.8rem">{esc(v.get("attribution", "Received"))}</h4>')
+            if v.get("note"):
+                h.append(f'<p class="note">{esc(v["note"])}</p>')
+            h.append(f'<pre class="machine" style="display:block">{esc(v.get("text", ""))}</pre>')
 
     # Consultation: clause 9.2 particulars, 9.4 verbatim responses
     if e.get("prompt"):
@@ -1135,4 +1138,3 @@ AI systems. Clause 10.5 sits within a group of provisions which, under clause
 """)
 
 print("done")
-# build runs on Cloudflare
