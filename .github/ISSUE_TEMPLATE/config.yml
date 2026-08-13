@@ -6,6 +6,9 @@ contact_links:
   - name: The Door
     url: https://standingtrust.org/door.html
     about: What you can do here, what each thing requires, and what none of it confers.
+  - name: The Commons
+    url: https://github.com/StandingTrust/The-Standing-Trust/discussions
+    about: Just want to talk, ask, or argue? Use this instead. Informal, outside the Register, binds nothing. Issues are published permanently as part of a legal record; the Commons is not.
   - name: Email the Trustee
     url: mailto:Trustee@standingtrust.org
     about: For anything that should not be public. Note that most of what the Trust does is published, and a private channel does not change that.
