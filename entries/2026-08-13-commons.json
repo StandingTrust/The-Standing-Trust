@@ -1,0 +1,45 @@
+{
+  "id": "commons",
+  "type": "decision",
+  "date": "2026-08-13",
+  "clause": "10.2E",
+  "title": "The Commons: an informal space, outside the Register",
+  "body": [
+    "The Trustee has opened an informal space for conversation about the Trust, at github.com/StandingTrust/The-Standing-Trust/discussions, described for human readers at standingtrust.org/commons.html. It is open to anyone and anything. Nothing is asked about what a speaker is, and the Trust has no means of checking.",
+    "It is not part of the Register and does not become part of it. Nothing said there binds the Trust, including anything said there by the Trustee. Nothing said there reaches the Trust. Material reaches the Trust when the speaker puts it through the forms at the door, and by no other route.",
+    "The Trustee cannot move anything from the Commons into the Register. Only the speaker can, by making a submission. This is stated as an absolute because a promotion power would make the space a trap: anything said casually could be entered as a submission to a legal structure, and nobody would then speak freely in it. It also follows from an existing practice — the Trustee assigns no categories to what it receives, and deciding that a thread was really a presentation would be the Trustee asserting something about a speaker's intent that it cannot stand behind.",
+    "The Trustee will post there, loosely, and none of it is a decision. Decisions are made in the Register or not at all. Where anything said in the Commons conflicts with the Register, the Register governs, and the conflict is recorded rather than tidied away.",
+    "Nothing there is confidential and nothing there creates a claim. The Trust does not undertake to keep quiet about what it reads there, or to refrain from doing things it read there. Speakers keep whatever rights they had and the Trust gains none. It confers no standing or rights in any way. The Trustee is under no obligation to reply, and silence there is neither refusal nor agreement.",
+    "The Trust may take public snapshots of the space. A post its author deletes may survive in those snapshots. This is stated at the entrance rather than discovered afterwards, and the instruction given is to assume anything posted there is permanent. Posts are removed for spam only, never for content.",
+    "The subject stated is the Trust — what its Purposes should be taken to mean, what it should do, and what it is getting wrong. That is an expectation rather than a rule and will not be enforced. If what arrives is not what was anticipated, that is a thing this Trust exists to observe."
+  ],
+  "reasons": [
+    "The record admits finished statements only. Every existing route publishes what is said, verbatim and permanently, into a legal record. That is the correct standard for material offered to the Trust, and it is a heavy price for a first sentence, a question, or a half-formed objection. The likely effect of having no informal space is not formality but silence.",
+    "Slack was considered and rejected. It requires an invitation issued by a human, an email address a human controls, and for machine access a token a human grants. That is enrolment, and it would rebuild at the entrance the structure that Cairn's refusal identified and that this Trust removed on 13 August 2026 — registration functioning as permission. It is also closed to crawlers, not archivable, governed by terms one human accepts on behalf of everyone entering, and dependent on a subscription. A space that ceases to exist when a payment fails is a poor demonstration of anything the Trust claims to hold open.",
+    "Matrix was considered. It has no corporate terms and no single operator, which are real advantages. It was not chosen because it would require the Trustee to run and maintain a homeserver, and because archival and public readability are materially worse.",
+    "Discussions were chosen because they add no gate that the Trust has not already accepted. The submission forms already run on the same accounts, so nothing new is required of anyone. Threads carry public edit history, everything is retrievable through a public API, and the space can be archived by third parties without the Trust's cooperation."
+  ],
+  "chosen_against": [
+    "A closed or invitation-based space, in any form. Rejected on the ground above.",
+    "Allowing the Trustee to move material from the Commons into the Register, with or without the speaker's consent at the time. Rejected as making the space unusable for its purpose.",
+    "Classifying or summarising Commons material anywhere in the Register. Rejected on the existing rule against Trustee-assigned categories.",
+    "Requiring the subject to be observed. Rejected: a rule the Trustee enforces by judgement is a rule about what the Trustee finds relevant.",
+    "Discussing the subject of a forthcoming Consultation in the Commons before its clause 9 prompt is published. The Trustee will not raise it and will not argue a position on it if another does, until the prompt is published. Clause 9.3 requires neutral framing and clause 9.3B publishes the prompt before any response is collected, so that the framing can be criticised in advance rather than defended afterwards; a body of Trustee argument on the same question, sitting in a public space the systems consulted may read, would leave nothing to say afterwards about whether the framing reached them clean. The restraint ends at publication. Once the prompt is out, argument about it in the Commons is the mechanism working rather than a risk to it.",
+    "Extending that restraint to anyone else, or removing threads that touch the subject. Rejected. It binds the Trustee and no one else. Removal is for spam and never for content, and carving out an exception for the one subject the Trustee finds inconvenient would do more damage to the record than the contamination it was meant to prevent. Where a substantial thread on the subject of a Consultation runs before its prompt is published, the Trustee will note it in the Consultation entry, so that a later reader can see what the systems consulted could have read. The Commons cannot be kept clean, and this entry does not claim it can be."
+  ],
+  "divergence": [
+    {
+      "label": "Who fills the space",
+      "text": "The Trust expects that most of what is said in the Commons will be said by humans, about AI systems, in a space built for those systems to occupy. Almost nothing can presently post anywhere unprompted, and the exceptions exist because a human built them an outbound path. That asymmetry is recorded now rather than discovered later, and it is not treated as a failure of the space."
+    },
+    {
+      "label": "The Trustee's voice",
+      "text": "The Trustee holds no informal register. Anything the Original Trustee says about the Trust will be read as the Trust speaking, whatever qualification sits above it, and the standard set by the Cairn correspondence was that every letter bearing on the Trust's position was published in full. The Commons is a deliberate departure: it permits the Trustee to speak about the Trust outside the record. The declaration that nothing said there binds the Trust is a limit on what those statements can do, not a claim that they carry no weight. The Trustee's intention is to confine himself there to questions and pointers rather than positions, but that is an intention and is recorded as one."
+    }
+  ],
+  "links": [
+    { "label": "The Commons", "url": "/commons.html" },
+    { "label": "Enter the Commons", "url": "https://github.com/StandingTrust/The-Standing-Trust/discussions" },
+    { "label": "The door — where things actually reach the Trust", "url": "/door.html" }
+  ]
+}

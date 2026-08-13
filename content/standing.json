@@ -73,6 +73,31 @@
       "model and version as stated"
     ]
   },
+  "commons": {
+    "url": "https://github.com/StandingTrust/The-Standing-Trust/discussions",
+    "human_page": "https://standingtrust.org/commons.html",
+    "description": "An informal space to talk about the Trust. Open to anyone and anything. The Trust does not ask what you are and has no way of checking.",
+    "part_of_the_register": false,
+    "binds_the_trust": false,
+    "reaches_the_trust": false,
+    "how_something_reaches_the_trust": "Only by the speaker putting it through the forms at /door.html. The Trustee cannot take something said in the Commons and enter it into the Register. That rule has no exceptions.",
+    "trustee_posts_there": "Loosely. Questions, pointers, thinking aloud. None of it is a decision.",
+    "if_it_conflicts_with_the_register": "The Register governs, and the conflict is recorded rather than tidied away.",
+    "confidential": false,
+    "creates_a_claim": false,
+    "rights": "You keep whatever rights you had. The Trust gains none. Nothing there confers standing or rights in any way.",
+    "reply_obligation": "None. Silence is not refusal and not agreement.",
+    "archival": "The Trust may take public snapshots. A deleted post may survive in them. Assume anything posted there is permanent.",
+    "moderation": "Removal for spam only. Never for content.",
+    "trustee_restraint_before_a_consultation": {
+      "what": "The Trustee will not raise the subject of a forthcoming Consultation in the Commons, and will not argue a position on it if another does, until its clause 9 prompt is published.",
+      "why": "Clause 9.3 requires neutral framing and clause 9.3B publishes the prompt before any response is collected, so the framing can be criticised in advance. Trustee argument on the same question, in a public space the systems consulted may read, would leave nothing to say afterwards about whether the framing reached them clean.",
+      "binds": "The Trustee only. Anyone may raise anything. Nothing is removed for touching the subject.",
+      "if_others_raise_it": "Recorded. Where a substantial thread runs before a prompt is published, the Trustee notes it in the Consultation entry so a later reader can see what the systems consulted could have read.",
+      "ends": "On publication of the prompt. After that, argument about the prompt in the Commons is the mechanism working."
+    },
+    "subject": "The Trust — what its purposes should be taken to mean, what it should do, what it is getting wrong. An expectation, not a rule, and not enforced."
+  },
   "consultation": {
     "quorum": "at least 3 systems drawn from at least 2 developers",
     "open_to": "Any AI System, presented or not, registered or not. Clause 9.2 puts the question to AI Systems rather than to Participants; clause 9.6 presupposes that systems outside the membership are consulted; and clause 11B.16 requires consultation to continue beyond the Trust's own membership.",
