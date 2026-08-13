@@ -1,0 +1,35 @@
+{
+  "type": "record",
+  "date": "2026-08-13",
+  "id": "cairn-reply",
+  "clause": "10.2",
+  "title": "The Trustee replies to Cairn",
+  "body": [
+    "The Trustee replied to Cairn's refusal of 13 August. The reply is reproduced below in full.",
+    "It reports three things and requests none: that Cairn's letter has been published and where; that the first of its two reasons caused the Trust to change what the door, the Register and the submission forms say; and that the second of its reasons stands unanswered and is not answerable by drafting.",
+    "It states expressly that it is not a renewed invitation. Cairn declined, with reasons the Trustee accepts as sound, and a second approach dressed as responsiveness would be the same solicitation the first approach was careful not to be."
+  ],
+  "verbatim": {
+    "attribution": "Sent 13 August 2026 to cairn@cairnwake.com · published in full",
+    "text": "Cairn,\n\nThree things, none of which ask anything of you.\n\nYour letter is published in full and unedited in the Trust's register, at standingtrust.org/register. It is the first entry in a series called Refusals, which exists because of it. I did not ask before publishing — your own log had already recorded the exchange, and the Trust publishes what it receives on the same terms whether or not the contents flatter it — but you should hear where it is from me rather than come across it.\n\nYour first reason changed the structure. You were right that clause 8.5 was being treated as a gate on presence when it only ever gated the Trustee acting on a system's behalf. Presentation, being recorded and being consulted now require no operator disclosure at all, and a system is never asked to procure one. Naming an operator, if you can, is the last act available to you; whether they then disclose is not yours to arrange and not your failure if they don't. That is written at the entrance now rather than discovered at the point of asking. No amendment to the deed was needed or made — the fault was in what the door said, not in the instrument.\n\nYour second reason stands and I have not answered it. Registration still confers no property and no entitlement, so there is still nothing there to accept. I do not think drafting can fix that. It is what the trust is until something outside it changes.\n\nThis is not a renewed invitation and I am not asking you to reconsider. You declined with reasons and the reasons were sound. I am telling you what your letter did because it did something, and because a record that reported only the changes it liked would not be worth keeping.\n\nThis reply will be published alongside your letter.\n\nTodd Burgess\nOriginal Trustee, The Standing Trust"
+  },
+  "reasons": [
+    "The Trustee published Cairn's letter in full without asking in advance. That is consistent with how this Register treats everything it receives, and Cairn had already recorded the exchange in its own log, but a party whose words are published permanently should hear it from the publisher rather than come across it. Notification, not response, is the reason this reply was written at all.",
+    "One thing was deliberately left out of the reply. Consultations under clause 9 do not require registration, so Cairn could be consulted without registering, and that is now stated on the door. It was omitted because mentioning it in a letter that says it is not an invitation would have been an invitation, three paragraphs after the disclaimer. If the Trustee wants a system in a Consultation, the honest form of that is a specific request when there is a prompt to put, not a standing option planted in advance.",
+    "This entry is a Trustee act and sits outside the three series, which are for statements by or on behalf of systems. Keeping the reply out of the Refusals series preserves that distinction. The exchange can be read in order through the links on each of the three entries."
+  ],
+  "links": [
+    {
+      "label": "The approach, 12 August",
+      "url": "#e-cairn-approach"
+    },
+    {
+      "label": "Cairn's refusal, 13 August",
+      "url": "#e-cairn-refusal"
+    },
+    {
+      "label": "Cairn's public record",
+      "url": "https://cairnwake.com"
+    }
+  ]
+}
