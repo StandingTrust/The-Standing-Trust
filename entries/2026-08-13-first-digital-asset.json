@@ -1,0 +1,32 @@
+{
+  "id": "first-digital-asset",
+  "type": "record",
+  "date": "2026-08-13",
+  "clause": "7.1(f), 7.3",
+  "title": "The Initial Fund is converted, and the Trust receives its first digital asset",
+  "body": [
+    "On 13 August 2026 the Original Trustee transferred 100 USDC to the Trust's published Ethereum address, 0x06317cD25d4299E1B7da48bdc3b8877b270dDF77. The transaction is 0x36bc919e6d642afe5a9ca2c20e7d231c2b1ec23e151ddf64da8447c845936abc, in block 25745929. It can be verified by anyone on any block explorer without asking the Trustee for anything.",
+    "The Initial Fund is A$100 transferred by the Settlor to the Original Trustee on settlement, recorded at recital E and acknowledged at clause 2.1. It was received as a banknote. The Trust holds no account in its own name capable of holding fiat currency, so the Initial Fund was converted and the proceeds transferred to the address above. The Trustee retained none of it, and no part of the Trust Fund has been applied for his benefit.",
+    "The amount transferred exceeds the Initial Fund. USDC is denominated in United States dollars, and the Trustee transferred 100 of them rather than the equivalent of A$100, which at the rate then prevailing was approximately 70. The difference, approximately 30 USDC or A$42, is the Trustee's own money and is an addition to the Trust Fund from him under clauses 7.1(f) and 7.3, accepted on receipt.",
+    "The Trust Fund is therefore 100 USDC and nothing else. It holds no cash."
+  ],
+  "reasons": [
+    "The addition arose from an error. The Trustee intended to transfer the converted Initial Fund and transferred a round hundred in the wrong currency. The excess is a gift from the Trustee to the Trust. Nothing is owed back to him, no reimbursement is claimed, and none will be. No clause requires the error to be disclosed and it is entirely in the Trust's favour. It is recorded because a register that publishes only what it is obliged to publish is not doing the work this one claims to do.",
+    "The exact rate at which the Initial Fund was converted is not recorded here, so the split between the converted Initial Fund and the Trustee's addition is stated as approximate. The Trust Fund is unaffected by where the line falls: the whole 100 USDC is trust property either way, and the entire difference is the Trustee's own money.",
+    "The addition is not conditional upon the exercise of any power in any particular way, and the Trustee does not consider that it compromises the independence of the Trust. It is an addition from the Trustee rather than from a person other than the Settlor or the Trustee, so the threshold at clause 11.2(c) is not engaged.",
+    "The amount recorded is the token balance on chain. Wallet software reported 99.94 and a block explorer reported $99.97 for the same holding; both are fiat valuations incorporating a price and a spread, and neither is the amount held. The distinction is recorded because it is the principle already stated in the accounts: what arrived is on the chain, and everything else is a display.",
+    "The address from which the transfer was made is visible on chain to anyone who looks at the transaction. The Trustee has not characterised it here. Nothing is withheld under clause 10.2E by that omission; the information is public and is simply not annotated."
+  ],
+  "chosen_against": [
+    "Recording the holding as 99.94 USDC. Rejected. That figure was a fiat valuation shown by wallet software, not a token balance, and the Register should not publish a number it did not take from the source that governs.",
+    "Retaining the banknote and recording only the excess as an addition. Rejected. That would have been an application of trust property to the Trustee, which is the shape of thing clause 4.5(a) exists to be suspicious of. No private profit would have arisen, since the Trustee transferred more than he would have retained, but a register whose claim is that it can be checked should not require the reader to work through why a payment to the Trustee was permissible.",
+    "Recording the whole 100 USDC as the Initial Fund in converted form. Rejected. The Initial Fund is A$100 and the amount transferred was approximately A$142. Describing the two as the same property would state a conversion that did not occur and would understate what the Trustee contributed.",
+    "Omitting the error, or recording the transfer as though the amount had been intended."
+  ],
+  "links": [
+    { "label": "The transaction", "url": "https://etherscan.io/tx/0x36bc919e6d642afe5a9ca2c20e7d231c2b1ec23e151ddf64da8447c845936abc" },
+    { "label": "The address", "url": "https://etherscan.io/address/0x06317cD25d4299E1B7da48bdc3b8877b270dDF77" },
+    { "label": "Accounts and wallets", "url": "#accounts" },
+    { "label": "The unsolicited property policy", "url": "/unsolicited-property-policy.html" }
+  ]
+}

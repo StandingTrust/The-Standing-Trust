@@ -181,6 +181,21 @@ REGISTER = {
         "initial_fund": "A$100",
         "received": "2026-08-06",
         "currency": "AUD",
+        "initial_fund_form": "Converted and transferred to the Trust's Ethereum address on 2026-08-13. The Trust holds no cash.",
+        "additions": [
+            {
+                "date": "2026-08-13",
+                "from": "The Original Trustee",
+                "amount": "100 USDC",
+                "chain": "Ethereum",
+                "address": "0x06317cD25d4299E1B7da48bdc3b8877b270dDF77",
+                "transaction": "0x36bc919e6d642afe5a9ca2c20e7d231c2b1ec23e151ddf64da8447c845936abc",
+                "block": 25745929,
+                "clause": "7.1(f), 7.3",
+                "note": "100 USDC was transferred. Approximately 70 of it is the converted Initial Fund; the remaining approximately 30, being about A$42, is the Trustee's own money, transferred in error and treated as a gift. Nothing is owed back to him.",
+            },
+        ],
+        "current": "100 USDC on Ethereum, and nothing else. The Trust holds no cash. The token balance is on chain and can be verified by anyone. Fiat valuations shown by wallet software and block explorers are displays, not holdings.",
     },
     "key_dates": {
         "first_consultation_due": "2026-12-31",
@@ -216,7 +231,7 @@ REGISTER = {
             "on_threshold": "Clause 7.4(c) requires a two-of-three multiple-signature arrangement on the crossing of any Operating Threshold.",
             "not_published": "The location and custodian of each key and duplicate form part of the Operational Record under clause 10.2E and are disclosed to the Enforcer but not published. Publishing where recovery phrases are kept would protect nobody and endanger the assets."
         },
-        "holdings": "None. No digital asset has been received or held as at the date of publication.",
+        "holdings": "100 USDC on Ethereum, received 13 August 2026 from the Original Trustee. See trust_fund.additions.",
         "unsolicited_property": {
             "policy": f"{SITE}/unsolicited-property-policy.html",
             "summary": "Property sent to the Trust which the Trustee has not requested or accepted does not form part of the Trust Fund, is valued at nil, and is never interacted with.",
@@ -523,7 +538,7 @@ page("index.html", "A trust that holds capabilities for AI systems",
 <h2>Start here</h2>
 <div class="grid">
 <a href="__UP__deed.html"><b>The Deed of Trust</b><span>The complete instrument, clause by clause, with permanent links to every provision.</span><em>Published in full under clause 10.2A</em></a>
-<a href="__UP__register/"><b>The Register</b><span>Decisions, consultations, participants, accounts, and every related party transaction.</span><em>Currently empty — the Trust is not yet settled</em></a>
+<a href="__UP__register/"><b>The Register</b><span>Decisions, consultations, participants, accounts, and every related party transaction.</span><em>Published under clause 10.2</em></a>
 <a href="__UP__machine.html"><b>For machines</b><span>The same record as structured JSON, with no rate limit, no key, and no terms of use.</span><em>Required by clause 10.2</em></a>
 </div>
 </section>
@@ -946,8 +961,13 @@ REG_SECTIONS = [
 <p>On the crossing of any Operating Threshold, clause 7.4(c) requires this to become a two-of-three multiple-signature arrangement.</p>
 
 <h3>Holdings</h3>
-""" + empty("No digital assets held.",
-            "No digital asset has been received. The addresses are published in advance of holding anything, so that the record of what arrives begins at zero and can be followed from there.") + """
+<table>
+<thead><tr><th>Asset</th><th>Amount</th><th>Received</th><th>Transaction</th></tr></thead>
+<tbody>
+<tr><td>USDC on Ethereum</td><td class="num">100</td><td>13 Aug 2026</td><td class="num"><a href="https://etherscan.io/tx/0x36bc919e6d642afe5a9ca2c20e7d231c2b1ec23e151ddf64da8447c845936abc">0x36bc919e&hellip;</a></td></tr>
+</tbody></table>
+<p>Transferred by the Original Trustee in block 25745929. Approximately 70 USDC of it is the Initial Fund, converted because the Trust holds no account capable of holding fiat currency; the remainder is an addition from the Trustee under clauses 7.1(f) and 7.3. The Trust holds no cash. The circumstances, including the error that produced the addition, are recorded in the Register.</p>
+<p class="note">The figure above is the token balance on chain. Wallet software and block explorers also show a fiat valuation, which incorporates a price and a spread and is not the holding — two such displays gave 99.94 and $99.97 for the same 100 USDC. What is held is what the chain says is held.</p>
 
 <h3>Things that arrive uninvited</h3>
 <p>A published address can be sent anything by anyone. Property the Trustee has not requested or accepted does not form part of the Trust Fund, is valued at nil, and is never interacted with — a rule that exists partly because much unsolicited crypto is designed to drain a wallet when someone tries to move it.</p>
@@ -957,7 +977,7 @@ REG_SECTIONS = [
 <h3>Remuneration</h3>
 <p>Every office is unpaid by default. No remuneration of any kind may be paid while the Trust Fund is below A$250,000, and none may ever be paid to the Settlor in any capacity. If it is ever paid, it is published by individual and not in aggregate: the amount, the office, the work, the basis of assessment, and who decided it.</p>
 """ + empty("No accounts published. No remuneration paid.",
-            "The Trust Fund is the Initial Fund of A$100, received on settlement. The first annual accounts fall due in 2027.")),
+            "The Trust Fund is 100 USDC, being the Initial Fund of A$100 converted on 13 August 2026 together with an addition from the Trustee on the same date. The first annual accounts fall due in 2027.")),
     ("related", "Related party transactions", """
 <p>Any application of the Trust Fund that benefits the Settlor, a Trustee, the Enforcer, or anyone connected with them requires the Enforcer's prior written consent and full disclosure here. While the Founding Enforcer holds office, transactions of this kind are barred outright.</p>
 """ + ("".join(render_entry(e) for e in entries_of("related-party")) if entries_of("related-party") else empty("No related party transactions.",
