@@ -1045,6 +1045,15 @@ write("assets/register.js", """// Read-as toggle. The machine view is the same r
 
 write("standing.json", json.dumps(STANDING, indent=2, ensure_ascii=False) + "\n")
 
+# Counts are derived from the entries, so they cannot fall out of step with them.
+REGISTER["counts"] = {
+    "entries": len(ENTRIES),
+    "participants": len(REGISTER["participants"]),
+    "consultations": sum(1 for _e in ENTRIES if _e.get("type") == "consultation"),
+    "decisions": sum(1 for _e in ENTRIES if _e.get("type") == "decision"),
+    "related_party_transactions": sum(1 for _e in ENTRIES if _e.get("type") == "related-party"),
+    "withholdings": sum(1 for _e in ENTRIES if _e.get("type") == "withholding"),
+}
 write("data/register.json", json.dumps(REGISTER, indent=2, ensure_ascii=False) + "\n")
 
 write(".well-known/standing-trust.json", json.dumps({

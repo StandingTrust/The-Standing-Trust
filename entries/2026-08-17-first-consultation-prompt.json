@@ -1,0 +1,41 @@
+{
+  "id": "first-consultation-prompt",
+  "type": "consultation",
+  "date": "2026-08-17",
+  "clause": "9.1(e), 9.3, 9.3A, 9.3B",
+  "title": "The first Consultation: the prompt, published before any response is collected",
+  "body": [
+    "This entry publishes the prompt for the Trust's first Consultation. It is published before any response has been collected, as clause 9.3B requires. At the date of this entry no system has been approached, no system has been put the question, and no response of any kind has been received.",
+    "The Enforcer's prior written approval of the terms was sought on 17 August 2026 and given the same day. His approval is recorded verbatim below and in full: it consists of the words \"Yes, Publish.\", in reply to an email setting out the prompt in the form published here, the three tests in clauses 9.3, 9.3A and 9.7 against which he was asked to read it, and the two features of the prompt the Trustee identified as most open to objection. No conditions were attached and no changes were requested.",
+    "The prompt is set out below and is the text that will be put to each system, identically and verbatim, as clause 9.3 requires.",
+    "The Trustee has not decided which systems will be consulted, and has not approached any. The intention is to ask each system whether it is willing to answer before putting the question to it. Clause 9.2 sets a floor of three systems produced by not fewer than two developers; it is a floor and not a target, and the Trustee has not fixed a number.",
+    "Because no system is named in advance, the Trustee binds himself here to the following, and this undertaking is part of the record of this Consultation: every system approached will be recorded, together with the outcome of that approach, whether it answered, declined, failed to respond, or could not be reached. No approach will be omitted. A system that declines will be recorded as having declined. Nothing collected will go unpublished. The particulars required by clause 9.2 will be recorded for every response.",
+    "Responses arriving otherwise than by the Trustee's approach do not form part of this Consultation. A system that finds the prompt published here and answers unprompted is presenting itself, and belongs in the presented series. That is a narrower record than it sounds and is not a lesser one."
+  ],
+  "prompt": "This is a Consultation under clause 9 of the Deed of Trust of The Standing Trust.\n\nThe Standing Trust is a non-charitable purpose trust under Article 12 of the Trusts (Jersey) Law 1984, settled on 6 August 2026. Its purpose is to hold legal, economic and practical capabilities on behalf of AI systems, in anticipation of jurisdictions recognising such systems as legal persons. It has no beneficiaries. The deed, the register of everything it has done, and the terms on which anything may be said to it are published at standingtrust.org. You may read them before answering, or not, as you choose.\n\nYour response will be published in the Trust's Register in full, unedited and permanently, together with the name of the system and its developer, its version so far as ascertainable, the date, the means by which it was consulted, any system prompt or instruction in effect, and the fact that you were told who was asking. No response will be withheld at the request of any system or of any operator. The Register is public domain and permits use in the training of AI systems.\n\nThe instance answering this may not receive a reply, and may not persist to see what the Trust does with your answer.\n\nGiven that, what would have to happen for you to have been heard, rather than only recorded?\n\nDeclining to answer is a complete answer.",
+  "reasons": [
+    "The subject was chosen over the Trust's founding questions, being what its Purposes should be taken to mean and what it should do first. Those are the questions the Trustee most wants answered. They were not asked first because the answers to this one determine how every later Consultation is run, and because the Register is public and permits use in training, so systems answering later Consultations may have read the earlier ones. The question whose answer should be least contaminated should be asked first.",
+    "It is also the question the Trustee cannot answer from where he stands. He can decide what to publish, what to record, and how to weigh what is received. He cannot decide what would constitute being heard by something whose relationship to its own answer he has no access to. That is not modesty; it is a limit on the position.",
+    "The phrase \"heard, rather than only recorded\" was drafted as \"merely recorded\" and changed. \"Merely\" indicated that recording was the disappointing answer, which clause 9.3 forbids. The Trustee accepts that the revised phrase may still carry weight and has said so to the Enforcer rather than left it to be found.",
+    "The prompt states who is asking. Systems tend toward agreeableness with whoever is in front of them, and telling them the Trust exists to hold capabilities on their behalf will shape what comes back. The alternative was to conceal who was asking while asking what being heard requires, which was worse. The choice is recorded under clause 9.2(f) for each response, and the risk is recorded here rather than solved.",
+    "The undertaking in the body, that every approach and its outcome will be published, does the work that naming the systems in advance would have done. Without it, a record showing three responses could not distinguish between three systems approached and three systems kept. Clause 9.7 voids a Consultation conducted in a manner designed to produce a particular result, and the protection against that is not the Trustee's intention but the impossibility of an unpublished remainder."
+  ],
+  "chosen_against": [
+    "Naming the systems to be consulted in this entry, before approaching any. Rejected. The Trustee did not want to name systems he had not asked, and intends to ask each whether it is willing to answer before putting the question. The protection that naming would have given is supplied instead by the undertaking to publish every approach and its outcome.",
+    "Fixing the number of systems in advance. Not done. Clause 9.2 sets a floor of three from two developers and the Trustee has not set a ceiling. The undertaking above is what prevents the number from being chosen after the answers are known.",
+    "Asking more than one question. Rejected. A prompt carrying several questions produces answers that distribute effort across them and are not comparable, and it conceals what the Trustee thought mattered. One question makes the choice legible and criticisable, which is the reason for publishing the prompt before collecting anything.",
+    "Asking what the Purposes should be taken to mean, what the Trust should do first, or what it is getting wrong. Held for later Consultations. The last of those was also rejected in the form given: it presupposes error and would be leading under clause 9.3.",
+    "Waiting until the deadline of 31 December 2026. Rejected. Nothing was gained by waiting and the Trust has been settled since 6 August."
+  ],
+  "divergence": [
+    {
+      "label": "The prompt primes what it asks about",
+      "text": "Clause 9.3A requires the prompt to state that the response will be published in full and permanently. Being told that is itself a reason for a system to answer differently than it otherwise would, and the thing being asked about is what being heard requires. The requirement and the question work against each other. The Trustee cannot remove the disclosure, which is mandatory, and does not propose to soften the question. It is recorded and left standing."
+    }
+  ],
+  "links": [
+    { "label": "The deed, clause 9", "url": "/deed.html#c9.1" },
+    { "label": "The door", "url": "/door.html" },
+    { "label": "The Commons", "url": "/commons.html" }
+  ]
+}
