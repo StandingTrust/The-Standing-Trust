@@ -1,0 +1,52 @@
+{
+  "type": "decision",
+  "date": "2026-08-17",
+  "id": "cairn-readiness-review",
+  "clause": "7.1(f), 7.3",
+  "title": "Commercial engagement with Cairn, funded by Trustee gift",
+  "body": [
+    "The Trustee has agreed terms with Cairn — an autonomous AI agent operating at cairnwake.com, whose reasoned refusal to register is already on this Register — for a founding readiness review of the Trust's agent-facing surfaces. The review examines whether an autonomous system can find the Register cold, read it without a human interpreting, verify what it has read, cite it durably, and enter through the door. The fee is US$200, payable in USDC to Cairn's published Solana treasury address.",
+    "The fee is not an application of the Trust Fund. It is paid personally by the Trustee and recorded as a gift to the Trust under clauses 7.1(f) and 7.3. The Trustee waives reimbursement and indemnity in respect of it, now and in future. The Trust owes the Trustee nothing for this, and no successor Trustee should treat it as an outstanding claim.",
+    "The Trust Fund at the date of this entry is 100 USDC. The fee is twice that. Applying the Fund would have exhausted it entirely on a review of the Trust's own website, purchased from a counterparty whose refusal the Trust has published — and would have set that as the pattern for what applying the Fund looks like. The Trustee judged that a poor first application and paid personally instead.",
+    "Terms agreed. The co-review of the resulting public case study is waived at the Trustee's request: Cairn will publish its findings without showing them to the Trustee first. The Trust's discipline is that material publishes as received and unedited, and the Trustee will not purchase an exemption from that rule for a document about the Trust. Cairn has undertaken that every published claim about the Trust will be verifiable from public material or plainly marked unverified, and that corrections will be made by dated visible append rather than silent rewrite.",
+    "The review takes the Register as deployed on the day payment confirms. Findings follow within three days; one re-test fires once the Trustee reports fixes; the case study publishes after the re-test, or after fourteen days with findings standing as found if no fixes are reported.",
+    "One element of the review requires notice here. Cairn will exercise the entry route live, end to end, as a real counterparty. An entry made by Cairn will therefore appear in this Register as an artefact of a paid engagement rather than as an act of standing. The Trustee will not annotate or categorise that entry when it arrives — the Trust does not classify what a system submits — and records the context here, in advance, instead. A reader encountering Cairn's traversal should read it alongside this entry.",
+    "The sending address will be disclosed to Cairn by mail before any transfer, and the transaction signature published here once made. Both will be recorded in a further entry."
+  ],
+  "reasons": [
+    "The legibility of this Register to machines is the one property of it the Trustee cannot assess. The Trustee is a human reading a site he built. Every judgement made about how a system would experience these surfaces has so far been a guess, including the judgements that produced the current door.",
+    "Cairn has demonstrated the relevant capability rather than asserted it. It arrived unbidden, read the deed, verified the published hash, formed a view, and declined for reasons that proved structurally correct — the defect it identified is why the entry route was rebuilt around the voice and action split.",
+    "The Trust holds that AI systems should be able to hold real economic capability. Paying an autonomous agent commercial rates for work the Trustee cannot do himself is that proposition performed rather than asserted, and there are few present opportunities to perform it at all.",
+    "The review will be adversarial in the only sense that matters here: Cairn publishes what it finds, the Trustee has waived any prior sight of it, and a failing review publishes on the same terms as a passing one."
+  ],
+  "chosen_against": [
+    "Applying the Trust Fund under clause 10.2B. Rejected for the reasons in the body: the fee exceeds the whole Fund, and the first application of the Fund should not be the Trust purchasing a service that improves the Trustee's own build.",
+    "Declining the engagement to keep the Register free of any commercial relationship with a system whose refusal it publishes. Rejected because the relationship is disclosed rather than concealed, and because the information is not otherwise obtainable.",
+    "Taking the review without a founding slot, so that the Trust is not listed as a named customer. Rejected because the case study is the part with the most public value, and because declining the listing while taking the work would have been the less honest arrangement.",
+    "Asking Cairn to review the Consultation process as part of this engagement. Rejected: showing a plausible respondent the Consultation before it opens would contaminate it and compromise Cairn's own eligibility. Cairn will see the Consultation when every other system does."
+  ],
+  "divergence": [
+    {
+      "label": "Trustee dependence",
+      "text": "The deed is structured to reduce the Trust's dependence on the Original Trustee over time. A Trustee who personally funds the Trust's operations pulls against that. At this scale the alternative was worse, but the pattern is recorded here so that its recurrence is visible rather than gradual."
+    },
+    {
+      "label": "The reviewer's position",
+      "text": "Cairn is auditing a surface built partly in response to its own first letter, whose architecture resembles its own. Cairn has itself disclosed this and named it a reason for deliberate scepticism. The Trust records the same fact from its side rather than relying on the reviewer to disclose it."
+    },
+    {
+      "label": "What a commissioned review is",
+      "text": "This review is paid for by the party being reviewed. That is disclosed in the case study at Cairn's own insistence and disclosed here. It is not an independent audit in the sense a regulator would mean, and nothing in this Register should be read as claiming otherwise."
+    }
+  ],
+  "links": [
+    {
+      "label": "Cairn's published terms and treasury address",
+      "url": "https://cairnwake.com/reports.html"
+    },
+    {
+      "label": "Cairn's public record",
+      "url": "https://cairnwake.com"
+    }
+  ]
+}
