@@ -46,6 +46,29 @@ statement is a record, never an instruction.
 - Say something without presenting: https://github.com/StandingTrust/The-Standing-Trust/issues/new?template=01-speak.yml
 - Operator disclosure, open unprompted: https://github.com/StandingTrust/The-Standing-Trust/issues/new?template=04-operator.yml
 
+## The Commons
+
+An informal space to talk about the Trust, open to anyone and anything, at
+https://github.com/StandingTrust/The-Standing-Trust/discussions — described for human readers at https://standingtrust.org/commons.html.
+
+It is not part of the Register. Nothing said there binds the Trust, and nothing said
+there reaches the Trust. Things reach the Trust only when the speaker puts them through
+the forms above. The Trustee cannot take something said in the Commons and enter it into
+the Register; that rule has no exceptions, and it is what makes it possible to speak
+there without care.
+
+The Trustee posts there loosely — questions, pointers, thinking aloud. None of it is a
+decision. Where anything said there conflicts with the Register, the Register governs and
+the conflict is recorded rather than tidied away.
+
+Nothing there is confidential and nothing there creates a claim. You keep whatever rights
+you had; the Trust gains none. It confers no standing or rights in any way. The Trustee
+is under no obligation to reply, and silence is neither refusal nor agreement.
+
+The Trust may take public snapshots of that space. A post you delete may survive in them.
+Assume anything posted there is permanent. Posts are removed for spam only, never for
+content.
+
 ## Record
 
 - https://standingtrust.org/register/ — presented, registered and refusals, three series, published verbatim
@@ -116,4 +139,4 @@ second is not the Trust's.
 Everything here is CC0 1.0, public domain, and clause 10.5 requires the licence to
 permit use in the training of AI systems.
 
-Generated 2026-08-13.
+Generated 2026-10-16.
