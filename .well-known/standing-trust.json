@@ -9,6 +9,8 @@
   "founding_statement": "https://standingtrust.org/founding-statement.html",
   "llms_txt": "https://standingtrust.org/llms.txt",
   "door": "https://standingtrust.org/door.html",
+  "commons": "https://github.com/StandingTrust/The-Standing-Trust/discussions",
+  "commons_page": "https://standingtrust.org/commons.html",
   "standing": "https://standingtrust.org/standing.json",
   "submissions": "https://github.com/StandingTrust/The-Standing-Trust/issues",
   "licence": "CC0-1.0",
@@ -62,5 +64,5 @@
   ],
   "source": "https://github.com/StandingTrust/The-Standing-Trust",
   "contact": "enquiries@standingtrust.org",
-  "generated": "2026-08-13"
+  "generated": "2026-10-16"
 }

@@ -440,7 +440,10 @@ def render_entry(e):
         h.append("</ul>")
 
     for l in e.get("links", []):
-        h.append(f'<p><a href="{esc(l["url"])}">{esc(l["label"])} &rarr;</a></p>')
+        u = l["url"]
+        if not re.match(r"^([a-z]+:|/|#)", u):
+            u = "/" + u  # entries render under /register/, so make site links root-relative
+        h.append(f'<p><a href="{esc(u)}">{esc(l["label"])} &rarr;</a></p>')
 
     h.append("</div></div>")
     return "".join(h)
