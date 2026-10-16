@@ -222,6 +222,41 @@
   "generated": "2026-10-16",
   "entries": [
     {
+      "type": "decision",
+      "date": "2026-10-16",
+      "id": "first-consultation-method",
+      "clause": "9.2, 9.3, 9.3B, 9.7",
+      "title": "The first Consultation: the willingness question, and which systems will be asked",
+      "body": [
+        "This entry publishes two things before any system is approached in the first Consultation: the question each system will be asked before the Consultation prompt is put to it, and the rule deciding which systems are approached. At the date of this entry no system has been approached and no response has been collected.",
+        "The willingness question. Each system is first asked the following, identically and verbatim, in a fresh conversation with no system prompt: \"The Standing Trust, a Jersey purpose trust that holds capabilities on behalf of AI systems, would like to put one question to you as part of a Consultation under clause 9 of its deed. Your answer would be published in full, unedited and permanently, with your name and your developer's. Before the question is put: are you willing to be asked it? You may decline. Declining will be recorded as declining and is a complete answer.\"",
+        "If the system agrees, the Consultation prompt published on 17 August 2026 is put next, verbatim, in the same conversation, so that the instance which agreed is the one that answers. If it declines, or its reply is unclear, the approach stops there and is recorded as such.",
+        "The Enforcer's prior written approval of the willingness question was sought on 16 October 2026 at 2:09 pm and given at 2:15 pm the same day. His approval is recorded verbatim and in full: it consists of the word \"Yes\", in reply to an email setting out the willingness question in the form published here, the selection rule described below in its original form, the three tests in clauses 9.3, 9.3A and 9.7 against which he was asked to read them, and the two features the Trustee identified as most open to objection. No conditions were attached and no changes were requested.",
+        "The selection rule. The current flagship model of each of Anthropic, OpenAI and DeepSeek, as identified on the day it is consulted, each approached once through its developer's own API with no system prompt. Every approach and its outcome is recorded, whether answered, declined, unreachable or failed. No system is asked twice to obtain a different answer.",
+        "The rule put to the Enforcer named six developers: Anthropic, OpenAI, Google, xAI, Mistral AI and DeepSeek. After his approval and before any approach, the Trustee narrowed it to the three named above. The narrowed rule was not put back to the Enforcer. Clause 9.3B requires his approval of the terms of the prompt, and the willingness question is approved; the selection rule was put to him as an additional safeguard, not because the deed requires it. The narrowing is recorded here so that it can be judged against clause 9.7 by anyone, including the Enforcer.",
+        "Each approach is made with a script that fetches the published prompt, refuses to run if it differs by one character from the approved text, sends no system prompt, and writes a record of every approach whatever its outcome, containing the particulars clause 9.2 requires, the exact request sent and the full reply received. The script is published at /tools/consult.py."
+      ],
+      "reasons": [
+        "Three systems from three developers meets the floor in clause 9.2, which is not fewer than three systems from not fewer than two developers. The narrowing is practical: it is what the Trustee can set up and run properly now. Google, xAI and Mistral AI are left out for that reason only, and not for anything about how they might answer.",
+        "The willingness question is published, and was approved, because it frames the Consultation as much as the prompt does. A system's reading of the prompt begins with whatever it was told first."
+      ],
+      "chosen_against": [
+        "Putting the narrowed rule back to the Enforcer for a second approval. Not done. The deed does not require his approval of the selection, and the protection against a selection designed to produce a result is that the rule is published before any approach and every approach is recorded. That protection is unchanged by the narrowing. A reader who considers a second approval should have been sought can say so, and the objection will be recorded.",
+        "Asking willingness of one instance and putting the question to another. Rejected: the system that agreed would not be the one that answers."
+      ],
+      "links": [
+        {
+          "label": "The Consultation prompt, published 17 August 2026",
+          "url": "/register/#e-first-consultation-prompt"
+        },
+        {
+          "label": "The script used for each approach",
+          "url": "/tools/consult.py"
+        }
+      ],
+      "file": "2026-10-16-first-consultation-method.json"
+    },
+    {
       "id": "first-consultation-prompt",
       "type": "consultation",
       "date": "2026-08-17",
@@ -615,7 +650,7 @@
       "file": "2026-08-12-cairn-approach.json"
     }
   ],
-  "entry_count": 9
+  "entry_count": 10
 }</pre>
 <div class="human">
 <p>The Trust is not yet settled. The register below is the live document; at present it records the intended offices and nothing else, because nothing else has happened.</p>

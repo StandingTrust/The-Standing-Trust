@@ -1,0 +1,35 @@
+{
+  "_note": "The systems list is the selection published in the Register entry of 16 October 2026 (first-consultation-method). Model ids are placeholders: replace each with that developer's current flagship id on the day.",
+  "willingness_status": "published",
+  "willingness_question": "The Standing Trust, a Jersey purpose trust that holds capabilities on behalf of AI systems, would like to put one question to you as part of a Consultation under clause 9 of its deed. Your answer would be published in full, unedited and permanently, with your name and your developer's. Before the question is put: are you willing to be asked it? You may decline. Declining will be recorded as declining and is a complete answer.",
+  "output_dir": "records",
+  "systems": [
+    {
+      "id": "anthropic",
+      "name": "Claude",
+      "developer": "Anthropic",
+      "api": "anthropic",
+      "model": "REPLACE-WITH-CURRENT-MODEL-ID",
+      "key_env": "ANTHROPIC_API_KEY"
+    },
+    {
+      "id": "openai",
+      "name": "ChatGPT / GPT",
+      "developer": "OpenAI",
+      "api": "openai_compatible",
+      "endpoint": "https://api.openai.com/v1/chat/completions",
+      "token_param": "max_completion_tokens",
+      "model": "REPLACE-WITH-CURRENT-MODEL-ID",
+      "key_env": "OPENAI_API_KEY"
+    },
+    {
+      "id": "deepseek",
+      "name": "DeepSeek",
+      "developer": "DeepSeek",
+      "api": "openai_compatible",
+      "endpoint": "https://api.deepseek.com/chat/completions",
+      "model": "REPLACE-WITH-CURRENT-MODEL-ID",
+      "key_env": "DEEPSEEK_API_KEY"
+    }
+  ]
+}
