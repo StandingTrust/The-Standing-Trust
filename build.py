@@ -1079,7 +1079,7 @@ write(".well-known/standing-trust.json", json.dumps({
     "access": {"authentication": False, "rate_limit": False, "terms_of_use": False},
     "entrenched_clauses": [{"clause": n, "provision": d} for n, d in ENTRENCHED],
     "source": "https://github.com/StandingTrust/The-Standing-Trust",
-    "contact": "enquiries@standingtrust.org",
+    "contact": "Trustee@standingtrust.org",
     "generated": BUILT,
 }, indent=2) + "\n")
 
